@@ -17,5 +17,8 @@ class Parser:
 	def getCost(self, node1Idx, node2Idx):
 		return self.matrix[node1Idx][node2Idx]
 
+	def __len__(self):
+		return len(self.matrix)
+
 parser = Parser("p43.atsp")
 tour = Tour(parser)
