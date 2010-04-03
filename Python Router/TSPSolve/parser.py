@@ -20,16 +20,22 @@ class Parser:
 
 	def __len__(self):
 		return len(self.matrix)
+
 if __name__ == "__main__":
     parser = Parser("p43.atsp")
     tour = Tour(parser)
     tour.printTour()
-    sn = tour.nodes[1].getPrev()[0].name
-    print 1, sn
-    tour.swap(1, sn)
+    #sn = tour.nodes[1].getNext().name
+    #print 1, sn
+    #tour.swap(1, sn)
     print
-    #for i in range(100):
-    #    print tour.score
-    #    tour.randSwap()
+    print tour.score
+    lscore = tour.score
+    for i in range(100000):
+        if tour.score < lscore:
+            lscore = tour.score
+            print tour.score
+        tour.randSwap()
+    print tour.score
     #print tour.score
     tour.printTour()
