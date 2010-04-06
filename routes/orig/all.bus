@@ -1,0 +1,1401 @@
+#stops[0][0][1] = new Array(
+    589 South East Street
+    715 South East Street
+    South East St and Valley View Drive
+    783 So East Street
+    831 So East Street
+    South East St and Eveningstar Drive
+    953 So East Street
+    1067 South East Street
+    1159 So East Street
+    1277 South East Street
+    South East St and Mt. Pollux Drive
+    1427 So East Street
+    1491 South East Street
+    1581 South East Street
+    1671 South East Street
+    56 Mechanic Street
+    75 Mechanic Street
+    108 Mechanic Street
+    Bay Road and Canterbury Lane
+    55 Hulst Road
+    35 Elf Hill Road
+    1 Elf Hill Road
+    Elf Hill Road and Bay Road
+    1260 Bay Road
+    1236 Bay Road
+    1174 Bay Road
+    1050 Bay Road
+    976 Bay Road
+    824 Bay Road
+    1510 South East Street
+    South East and Station Road
+    706 South East Street
+    Amherst Regional High School
+    170 Chestnut Street
+#    );
+
+#stops[0][1][1] = new Array('South Pleasant Street
+    647 South Pleasant Street
+    657 South Pleasant Street
+    Columbia Dr and Justice Drive
+    61 Justice Drive
+    46 Chesterfield Drive
+    Columbia Drive and Chesterfield Drive
+    26 Hunters Hill Circle
+    East Hadley Road and Trimwood Lane
+    East Hadley Road and Whippletree Lane
+    Wintergreen And Whippletree
+    28 Whippletree Lane
+    Wintergreen And Whippletree
+    36 Snell Street
+    Snell Street and Blake field
+    Moody Fields St and Snell Street
+    36 Snell Street
+    Amherst Regional High School
+    170 Chestnut Street
+#    );
+#stops[0][2][1] = new Array(
+    335 Middle Street
+    355 Middle Street
+    369 Middle Street
+    385 Middle Street
+    Middle Street and So Orchard Drive
+    19 Chapel Road
+    29 Chapel Road
+    60 Chapel Road
+    610 Bay Road
+    556 Bay Road
+    Rambling Road and Autumn Lane
+    39 Country Corners Road
+    71 Country Corners Road
+    1270 West Street
+    731 West Street
+    34 Pomeroy Lane
+    51 Pomeroy Lane
+    Pomeroy Lane and Coach Lane
+    Pomeroy Lane and Carriage Road
+    268 South East Street
+    236 South East Street
+    140 South East Street
+    66 South East Street
+    Main Street and Watson Farms
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][3][1] = new Array(
+    316 West Pomeroy Lane
+    256 West Pomeroy Lane
+    116 West Pomeroy Lane
+    575 West Street
+    631 West Street
+    Longmeadow Drive and Greenwich Road
+    75 Longmeadow Drive
+    100 Longmeadow Drive
+    Farmington Road and Applewood Lane
+    214 Glendale Road
+    193 Glendale Road
+    Glendale Road and  Tracy Circle
+    120 Tracy Circle
+    39 Tracy Circle
+    Tracy Circle and Glendale Road
+    530 West Street
+    400 West Street
+    252 West Street
+    259 West Street
+    206 West Street
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][4][1] = new Array(
+    300 West Street
+    37 Greenwich Road
+    65 Greenwich Road
+    16 Deepwoods Drive
+    49 Deepwoods Drive
+    Pondview Drive and  Brookside Court
+    Pondview Drive and Western Lane
+    114 Pondview Drive
+    82 Pondview Drive
+    Pondview Drive and Lantern Lane
+    311 West Street
+    117 East Hadley Road
+    The Brk
+    Amherst Regional High School
+    170 Chestnut Street
+#    );
+#stops[0][5][1] = new Array(
+    Old Belchertown Road
+#'
+    54 Larkspur Drive
+    75 Larkspur Drive
+    Larkspur Drive and Wildflower Drive
+    Wildflower Drive and Trillium Way
+    Wildflower Drive and Foxglove Lane
+    Wildflower Drive and Indian Pipe Lane
+    Wildflower Drive and Alyssum Drive
+    98 Iduna Lane
+    98 Iduna Lane
+    439 Station Road
+    Station Road and Cortland Drive
+    575 Station Road
+    610 Station Road
+    669 Station Road
+#'
+#'
+#'
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][6][1] = new Array(
+    23 Orchard Street
+    29 Orchard Street
+    42 Hitchcock Road
+    Northampton Road and Kendrick Place
+    Northampton Road and Lincoln Avenue
+    163 Northampton Road
+    22 Blue Hills Road
+    Amity Place and Amity Street
+    480 Northhampton Road
+    247 Northampton Road
+    99 Dana Street
+    Dana Street and Dana Place
+    Lincoln and Amity
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][7][1] = new Array(
+    Harkness Road and Dayton Lane
+    202 Harkness Road
+    318 Harkness Road
+    Stony Hill Road and Cranberry Lane
+    Stony Hill Road and Red Fox Lane
+    Stony Hill Road and Moss Lane
+    Stony Hill Road and Flintlock Lane
+    J-11 Thistle Lane
+    Stony Hill and Hickory Lane
+    181 Aubinwood Road
+    17 Aubinwood Road
+    17 Aubinwood Road
+    Oak Knoll and Heatherstone
+    128 Heatherstone Road
+    Heatherstone Road and Kettle Pond Road
+    168 Heatherstone Road
+    187 Heatherstone Road
+    184 Heatherstone Road
+    Bridle Path and Heatherstone Road
+    Gatehouse Road and Emerson Court
+    Winston Court and Gatehouse Road
+    30 Gatehouse Road
+    261 Belchertown Road
+    224 Belchertown Road
+    173 Belchertown Road
+    48 Belchertown Road
+    Amherst Regional High School
+    170 Chestnut Street
+#    );
+#stops[0][8][1] = new Array(
+    Pelham Road and Poets Corner
+    Pelham Road and Bayberry Lane
+    239 Pelham Road
+    15 Heatherstone Road
+    27 Heatherstone Road
+    36 Alpine Drive
+    156 Alpine Drive
+    Echo Hill Road and Alpine Drive
+    55 Aubinwood Road
+    87 Aubinwood Road
+    108 Aubinwood Road
+    141 Aubinwood Road
+    171 Aubinwood Road
+    181 Aubinwood Road
+    Heaterstone Road and Echo Hill Road
+    35 Jenks Street
+    41 Jenks Street
+    32 Jenks Street
+    170 Chestnut Street
+    Amherst Regional High School
+#    );
+#stops[0][9][1] = new Array(
+#'
+    27 Montague Road
+    72 Montague Road
+    115 Montague Road
+    151 Montague Road
+    Montague Road and Ball Lane
+    Montague Road and Old Montague Road
+    100 Cowls Road
+    Cowls Road and Sunderland Road
+    486 Sunderland Rd
+    129 Meadow Street
+    50 Meadow street
+    33 Meadow Street
+    Pine St and Harris Street
+    Pine St and 120 Pulpit Hill Road
+    338 Pine Street
+    Amherst Regional High School
+    170 Chestnut Street
+#    );
+#stops[0][10][1] = new Array(
+    East Pleasant Street
+    43 Blackberry Lane
+    Blackberry La and Grantwood Drive
+    Blackberry La and Sacco Drive
+    Sacco Dr and Tuckerman Lane
+    Sacco Dr and Kingman Road
+    Kingman Road and Grantwood Drive
+    68 Grantwood Drive
+    Colonial Court and Grantwood Drive
+    Cherry Lane and Weaver Circle
+    39 Emily Lane
+    12 Emily Lane
+    17 Sheerman Lane
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][11][1] = new Array(
+    435 Pine Street
+    449 Pine Street
+    469 Pine Street
+    Market Hill Road
+    Market Hill Road
+    294 Market Hill Road
+    489 Market Hill Road
+    539 Market Hill Road
+    555 Market Hill Road
+    35 Weatherwood Road
+    High Point Drive and Overlook Drive
+    High Point Drive and Overlook Drive
+    6 High Point Drive
+    537 Flat Hills Road
+    249 Flat Hills Road
+    222 Flat Hills Road
+    83 Flat Hills Road
+    772 North East Street
+    752 North East Street
+    305 Strong Street
+    170 Chestnut Street
+    Amherst Regional High School
+#     );
+#stops[0][12][1] = new Array(
+    Lilac Lane
+    Lilac Lane
+    Lilac Land and Rosemary Street
+    28 Henry Street
+    92 Henry Street
+    428 Henry Street
+    196 Shutesbury Road
+    250 Shutesbury Road
+    297 Shutesbury Road
+    307 Shutesbury Road
+    327 Shutesbury Road
+    106 Shutesbury Road
+    220 No East Street
+    217 North East Street
+    164 North East Street
+    143 North East and Arbor Way
+    89 North East and Hedgerow Lane
+    24 North East Street
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][13][1] = new Array(
+    North Pleasant Street
+    North Pleasant St and Fisher Street
+    North Pleasant St and Puffton Village
+    North Village and No Pleasant
+    Berkshire Terrace and No Pleasant Street
+    North Pleasant St and Fairfield Street
+    North Pleasant St and Old Town Road
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][14][1] = new Array(
+    21 Pine Grove
+    The Hollow and Pine Grove Road
+    Pine Grove and Crossbrook
+    Crossbrook and The Hollow
+    285 Stanley Street
+    7 Tamarack Drive
+    28 Tamarack Drive
+    Willow and Tamarack Street
+    57 Stanley Street
+    24 Stanley Street
+    102 Colonial Village
+    29 Colonial Village 
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][15][1] = new Array(
+    16 Bridge Street
+    16 Bridge Street
+    Bridge Street
+    24 Leverett Road
+    Leverett Road and Pulpit Hill Road
+    85 Leverett Road
+    141 Leverett Road
+    150  E Leverett Road
+    84 East Leverett Rd
+    58 East Leverett Road
+    404 State Street
+    State Street and Campbell Court
+    State Street
+    64 State Street
+    19 Summer Street
+    99 Summer Street
+    165 Summer Street
+    87 Mill Street
+    Pulpit Hill and Mill Road
+    120 Sand Hill Road
+    72 Sand hill Road and Puffer Circle
+    Amherst Regional High School
+    170 Chestnut Street
+#    );
+#stops[0][16][1] = new Array(
+    108 Wildflower Drive
+    Wildflower Drive and Ladyslipper Circle
+    134 Wildflower Drive
+    162 Wildflower Drive
+    174 Wildflower Drive
+    182 Wildflower and Summerfield
+    211 Wildflower Drive
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][17][1] = new Array(
+    Mill Valley Estates
+    700 Mill Valley Est
+    500 Mill Valley Est
+    300 Mill Valley Est
+    
+    170 Chestnut Street
+    Amherst Regional High School
+#     );
+#stops[0][18][1] = new Array(
+    83 Shays Street
+    Shays Street and Wentworth Drive
+    327 Shays Street
+    333 Shays Street
+    401 Shays Street
+    71 Middle Street
+    193 Middle Street
+    Middle Street and Potwine Lane
+    Potwine La and Potwine Place
+    73 So Mt. Holyoke Drive
+    Mt. Holyoke Drive and Norwottuck Circle
+    74 Mt. Holyoke Drive
+    West Street and Mill Street
+    Jeffrey Lane and So Pleasant Street
+    Hillcrest Place and So Pleasant Street
+    446 So Pleasant Street
+    Memorial Drive and So Pleasant Street
+    395 South Pleasant Street
+    197 South Pleasant Street
+    170 Chestnut Street
+    Amherst Regional High School 
+#     );
+#stops[0][19][1] = new Array(
+    Old Farm Road
+    439 Old Farm Road
+    488 Old Farm Road
+    5 Teaberry Lane
+    Teaberry Lane and Woodlot Road
+    49 Woodlot Road
+    34 Woodlot Road
+    19 Woodlot Road
+    521 Old Farm Road
+    70 Hop Brook Road
+    40 Hop Brook Road
+    Hop Brook Road and Kestrel Lane
+    17 Kestrel Lane
+    7 Kestrel Lane
+    401 Old Farm Road
+    321 Old Farm Road
+    170 Chestnut Street
+    Amherst Regional High School 
+#     );
+#stops[0][20][1] = new Array(
+    33 Southpoint 
+    45 SouthPoint 
+    73 Southpoint
+    95 SouthPoint
+    127 Brittany Manor
+    145 Brittany Manor
+    149 Brittany Manor
+    170 Chestnut Street
+    Amherst Regional High School
+#     );
+#stops[0][21][1] = new Array(
+    155 Logtown Road
+    147 Logtown Road
+    Logtown Road and Dwight Circle
+    Logtown Road and Edge Hill Road
+    Logtown Road and Curtis Place
+    68 Rolling Green
+    85 Rolling Green
+    95 Rolling Green
+    95 Rolling Green
+    202 Rolling Green
+    20 Rolling Green
+    Amherst Regional High School
+    170 Chestnut Street
+#    );
+#stops[0][22][1] = new Array(
+    East Pleasant Street
+    621 East Pleasant Street
+    789 East Pleasant Street
+    East Pleasant St and Harlow Drive
+    957 E Pleasant Street
+    Hitching Post Road and Morgan Circle
+    Owen Drive and E Pleasant Street
+    Rolling Ridge and Goldenrod Circle
+     Rolling Ridge and Bellview Circle
+    Rolling Ridge Road and Teawaddle Lane
+    Oakwood And Rolling Ridge
+    30 Harlow Drive
+    Harlow and Frost
+    Harlow and Hartman
+    48 Ridgecrest Road
+    Van Meter and Ridgecrest
+    Van Meter and Hartman 
+    Van Meter and Frost 
+    35 Van Meter Drive
+    684 East Pleasant Street
+    East Pleasant Street
+    Amherst Regional High School 
+    170 Chestnut Street
+#     );
+#stops[0][23][1] = new Array(
+    55 Dudleyville Road
+    64 Dudleyville Road
+    169 Dudleyville Road
+    453 Montague Road
+    429 Montague Road
+    423 Montague Road
+    204 Montague Road
+    75 Montague Road
+    32 Pelham Hill Road
+    48 Pelham Hill Road
+    51 Pelham Hill Road
+    191 Pelham Hill Road
+    Pelham Hill Road and Leonard Road
+    266 Pelham Hill Road
+    294 Pelham Hill Road
+    Baker Road and Schoolhouse Road
+    218 Baker Road
+    508 W Pelham Road
+    513 West Pelham Road
+    517 West Pelham Road
+    533 West Pelham Road
+    571 West Pelham Road
+    155 Buffam Road
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][24][1] = new Array(
+    71 Cushman Road
+    102 Shutesbury Road
+    86 Shutesbury Road
+    61 Shutesbury Road
+    58 Shutesbury Road
+    Montague Road and Putney Road
+    18 Montague Road
+    24 Montague Road
+    98 Montague Road
+    104 Montague Road
+    124 Montague Road
+    135 Montague Rd
+    148 Montague Road
+    174 Montague Road
+    178 Montague Road
+    137 Depot Road
+    112 Depot Road
+    Depot Road and Long Hill Road
+    62 Depot Road
+    58 Depot Road
+    45 Depot Road
+    45 Depot Road
+    45 Depot Road
+    49 Depot Road
+    Juggler Meadow Road and Long Plain Road
+    2 Long Plain Road
+    170 Chestnut Street
+    Amherst Regional High School
+#     );
+#stops[0][25][1] = new Array(
+    233 West Pelham Road
+    233 West Pelham Road
+    82 West Pelham Road
+    73 West Pelham Road
+    55 West Pelham Road
+    56 West Pelham Road
+    43 West Pelham Road
+    30 West Pelham Road
+    17 West Pelham Road
+    12 West Pelham Road
+    94 Leverett Road
+    100 Leverett Road
+    24 Leverett Road
+    20 Leverett Road
+    17 Leverett Road
+    215 Leverett Road
+    226 Leverett Road
+    260 Leverett Road
+    266 Leverett Road
+    366 Leverett Road
+    56 Pratt Corner Road
+    74 Pratt Corner Road
+    69 Pratt Corner Road
+    109 Pratt Corner Road
+    141 Pratt Corner Road
+    141 Pratt Corner Road
+    258 Pratt Corner Road
+    672 Pratt Corner Road
+    Amherst Regional High School
+    170 Chestnut Street
+    Amherst Regional High School
+#     );
+#stops[0][26][1] = new Array(
+    169 Rattlesnake Gutter Road
+    220 North Leverett Road
+    172 North Leverett Road
+    168 North Leverett Road
+    162 North Leverett Road
+     North Leverett Road and Richardson Road
+    134 North Leverett Road
+    131 North Leverett Road
+    North Leverett Road and Chestnut Hill Road
+    105 Hemenway Road
+    Hemenway Road and Mill yard Road
+    4 Hemenway Road
+    94 Cave Hill Road
+    78 Cave Hill Road
+    71 Cave Hill Road
+    61 Cave Hill Road
+    61 Cave Hill Road
+    50 Cave Hill Road
+    190 Montague Road
+    462 Long Plain Road
+    473 Long Plain Road
+    475 Long Plain Road
+    438 Long Plain Road
+    412 Long Plain Road
+    362 Long Plain Road
+    316 Long Plain Road
+    308 Long Plain Road
+    298 Long Plain Road
+    260 Long Plain Road
+    247 Long Plain Road
+    Long Plain Road and Long Hill Road
+    176 Long Plain Road
+    160 Long Plain Road
+    160 Long Plain Road
+    160 Long Plain Road
+    89 Long Plain Road
+    79 Long Plain Road
+    Long Plain Road and Juggler Meadow Road
+    42 Long Plain Road
+    170 Chestnut Street
+    Amherst Regional High School
+#     );
+#stops[0][27][1] = new Array(
+    Lakeview Road
+    Lakeview Drive and Farrar Drive
+    Merrill Dr And Lakeview Road
+     853 Wendell Road
+    
+    Locks Pond Road and Lake Drive
+#'
+    Locks Pond Road and Great Pines Road
+    248 Locks Pond Road
+    174 Locks Pond Road
+    159 Locks Pond Road
+    151 Locks Pond Road
+    Locks Pond Road and Old Orchard Drive
+    
+    681 Wendell Road
+    633 Wendell Road
+    548 Wendell Road
+    441 Wendell Road
+    175 Wendell Road
+    33 Wendell Road
+    16 Wendell Road
+    113 Leverett Road
+    253 Shutesbury Road
+    Shutesbury Road and Old Mountain Road
+    237 Shutesbury Road
+    173 Shutesbury Road
+    71 Cushman Road
+    170 Chestnut Street
+    Amherst Regional High School
+#     );
+#stops[0][28][1] = new Array(
+    93 Amherst Road
+    79 Amherst Road
+    60 Amherst Road
+    31 Teawaddle Hill Road
+    106 Teawaddle Hill Road
+    7 Cushman Road
+    Cemetery Road and E Leverett Road
+    124 January Hill Road
+    116 January Hill Road
+#
+    99 January Hill Road
+    74 January Hill Road
+    Kettle Hill Road and Summer Mt Road
+    January Hill Road and tempcopy 
+    1 January Hill Road
+    Amherst Regional High School
+    170 Chestnut Street
+#     );
+#stops[0][29][1] = new Array(
+    34 Cooleyville Road
+    89 Cooleyville Road
+    67 Cooleyville Road
+    86 Sand Hill Road
+    105 Sand Hill Road
+    105 Sand Hill Road
+    170 Chestnut Street
+    Amherst Regional High School 
+#     );
+#stops[0][30][1] = new Array(
+    194 Amherst Road
+    Amherst Road and Bray Court
+    255 Amherst Road
+    276 Amherst Road
+    Amherst Road and No Valley Road
+    315 Amherst Road
+    312 Daniel Shays Highway
+    Daniel Shays Highway and King Street
+    350 Daniel Shays Highway
+    296 Daniel Shays Highway 
+    294 Daniel Shays Highway
+    210 Daniel Shays Highway
+    60 Daniel Shays Highway 
+    48 Daniel Shays Highway 
+    19 Daniel Shays Highway
+    17 Daniel Shays Highway
+    205 Packardville Road
+    166 Packardville Road
+    Gulf Rd and Packardville Road
+    46 Enfield Road
+    Enfield Rd and Butterhill Road
+    33 Enfield Road
+    11 Enfield Road
+    131 Amherst Road
+    120 Amherst Road
+    107 Amherst Road
+    57 Amherst Road
+    29 Amherst Road
+    4 Amherst Road
+    376 Pelham Hill Road
+    170 Chestnut Street
+    Amherst Regional High School 
+#     );
+#stops[0][31][1] = new Array(
+    Buffam Road and Boyden Road
+    18 Boyden Road
+    25 Boyden Road
+    43 Boyden Road
+    78 Schoolhouse Road
+    117 Buffam Road
+    29 Buffam Road
+    17 Buffam Road
+    North Valley Road and Meetinghouse Road
+    170 North Valley Road
+    172 North Valley Road
+    193 North Valley Road
+    194 North Valley Road
+    201 North Valley Road
+    205 North Valley Road
+    215 North Valley Road
+    215 North Valley Road
+    196 North Valley Road
+    76 North Valley Road
+    Amherst Rd and South Valley Road
+    94 Amherst Road
+    5 Arnold Road
+    25 Arnold Road
+    28 Arnold Road
+    37 Arnold Road
+    46 Arnold Road
+    94 Amherst Road
+    8 Harkness Road
+    16 Harkness Road
+    46 Harkness Road
+    19 Harkness Road
+    88 Harkness Road
+    Harkness Road and So Valley Road
+    144 Harkness Road
+    Harkness Road and Dayton Lane
+    170 Chestnut Street
+    Amherst Regional High School
+#   );
+
+
+#
+#stops[1] = new Array();
+#stops[1][0] = new Array();
+#stops[1][0][0] = new Array();
+#stops[1][1] = new Array();
+#stops[1][1][0] = new Array();
+#stops[1][2] = new Array();
+#stops[1][2][0] = new Array();
+
+#stops[1][0][1] = new Array(
+    64 State Street
+    81 State Street
+    137 State Street
+    395 State Street
+    Leverett Road and Pulpit Hill Road
+    85 Leverett Road
+    127 Leverett Road
+    265 Leverett Road
+    275 Leverett Road
+    329 Leverett Road
+    550 East Leverett Road
+    270 East Leverett Road
+    180 East Leverett Road
+    150 E Leverett Road
+    58 East Leverett Road
+    50 East Leverett Road
+    95 Bridge Street
+    329 Pine Street
+    216 Pine Street
+    208 Pine Street
+    MARKS MEADOW elementary school
+#  );
+
+#stops[1][1][1] = new Array(
+    Pine Street
+    Pine Steet and Harris Street
+    171 Pine Street
+    241 Pine Street
+    235 Pine Street
+    44 Owen Drive
+    12 Owen Drive
+    172 Rolling Ridge Road
+    Rolling Ridge and Goldenrod Circle
+    3 Sand hill Road
+    180 Summer Street
+    169 Summer Street
+    125 Montague Road
+#
+    151 Montague Road
+    164 Motague Road
+    324 Montague Road
+    350 Montague Road
+    375 Montague Road
+    454 Old Montague Road
+    100 Cowls Road
+    486 Sunderland Road
+    MARKS MEADOW elementary school
+#   );
+
+#stops[1][2][1] = new Array(
+    North Pleasant Street
+    North Pleasant street And Hobart Lane
+    1116 North Pleasant Street
+    1147 North Pleasant Street
+    1147 North Pleasant Street
+    1177 North Pleasant Street
+    11 Meadow Street
+    Townhouse and Brandywine 
+    560 Puffton Village
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    MARKS MEADOW elementary school
+#);
+
+#
+#stops[2] = new Array();
+#stops[2][0] = new Array();
+#stops[2][0][0] = new Array();
+#stops[2][1] = new Array();
+#stops[2][1][0] = new Array();
+#stops[2][2] = new Array();
+#stops[2][2][0] = new Array();
+#stops[2][3] = new Array();
+#stops[2][3][0] = new Array();
+#stops[2][4] = new Array();
+#stops[2][4][0] = new Array();
+#stops[2][5] = new Array();
+#stops[2][5][0] = new Array();
+#stops[2][6] = new Array();
+#stops[2][6][0] = new Array();
+#stops[2][7] = new Array();
+#stops[2][7][0] = new Array();
+
+#stops[2][0][1] = new Array(
+    Station Road
+    682 Station Road
+    610 Station Road 
+    98 Iduna Lane 
+    461 Station Road
+    Wildflower Drive and Alyssum Drive
+    12 Alyssum Drive 
+    23 Alyssum Drive 
+    7 Alyssum Drive 
+    intersectioin of Wildflower Drive and Indian Pipe Lane
+    19 Indian Pipe Lane 
+    Wildflower Drive and Foxglove Lane 
+    5 Trillium Way
+    2 Trillium Way 
+    24 Trillium Way 
+    102 Wildflower Drive
+    30 Teaberry Lane 
+    Teaberry Lane and  Woodlot Road 
+    90 Woodlot Road 
+    80 Woodlot Road 
+    62 Woodload Road 
+    63 Woodlot Road
+    58 Woodlot Road
+    37 Woodlot Road 
+    34 Woodlot Road 
+    19 Woodlot Road 
+    14 Woodlot Road 
+    51 Hop Brook Road 
+    40 Hop Brook Road 
+    35 Hop Brook Road 
+    16 Kestrel Lane 
+    7 Kestrel Lane 
+    439 Old Farm Road
+    The Hollow and Pine Grove Road 
+    Pine Grove and Crossbrook 
+    87 Crossbrook 
+    Fort River Elementary School
+#     );
+#stops[2][1][1] = new Array(
+    41 Pelham Road 
+    41 Pelham Road 
+    115 Pelham Road 
+    5 Poets Corner
+    7 Poets Corner 
+    8 Poets Corner 
+    Poets Corner 
+    185 Pelham Road 
+    3 Bayberry Lane 
+    15 Bayberry Lane 
+    19 Bayberry Lane
+    31 Bayberry Lane 
+    224 Pelham Road
+    39 Jenks Street
+    45 Jenks Street
+    Heatherstone Road and Adams Street
+    218 Alpine Drive 
+    65 Echo Hill Road 
+    89 Heatherstone Road
+    17 Aubinwood Road 
+    87 Aubinwood Road 
+    108 Aubinwood Road 
+    121 Aubinwood Road 
+    157 Aubinwood Road 
+    195 Aubinwood Road 
+    Gatehouse Road and Emerson Court
+    Winston Court an Gatehouse Road
+    intersectin of Webster Court and Gatehouse Road
+    Fort River Elementary School 
+#     );
+#stops[2][2][1] = new Array(  
+    34 Logtown Road 
+    Logtown Road and Curtis Pl.
+    Logtown Road and Edge Hill Road.
+    Logtown Road and Dwight Circle
+    155 Logtown Road 
+    19 Dayton Lane 
+    196 Harkness Road
+    202 Harkness Road 
+    Stony Hill Road and Cranberry Lane
+    Stony Hill Road and Red Fox Lane
+    Stony Hill Road and Moss Lane
+    91 Stony Hill Road 
+    Stony Hill ROad and Flintlock Lane
+    Sutton Court and Stony Hill Road 
+    Stony Hill Road and Bedford Court 
+    Stony Hill Road and Sutton Court 
+    J-11 Thistle Lane 
+    Duxbury Lane and Stony Hill Road
+    Stony Hill Road and Hickory Lane
+    Pebble Ridge and Heatherstone Road
+    Birchcroff Lane and Heatherstone Road
+    168 Heatherstone Road 
+    Kettle Pond Road and Heatherstone Road
+    134 Heatherstone Road
+    315 Pelham Road 
+    376 Pelham Road
+    820 Main Street 
+    Fort River Elementary School
+#     );
+#stops[2][3][1] = new Array(
+    21 Rolling Green
+    46 Rolling Green
+    57 Rolling Green
+    80 Rolling Green
+    95 Rolling Green
+    202 Rolling Green
+    30 Gatehouse Road 
+    81 Belchertown Road 
+    Fort River Elementary School 
+#     );
+#stops[2][4][1] = new Array(
+    115 High Point Drive 
+    73 Overlook Drive 
+    30 Overlook Drive 
+    19 Overlook Drive
+    277 Shutesbury Road 
+    297 Shutesbury Road 
+    317 Shutesbury Road
+    Salem Place and Main Street
+    Spaulding Street and Main Street
+    N Whitney Street and Main Street
+    27 S Whitney Street
+    Railroad Street and Main Street
+    531 Main Street 
+    intesection Main Street and Wayson Farms 
+    Fort River Elementary School 
+#     );
+#stops[2][5][1] = new Array(
+    Lilac Lane
+    Rosemary Street and Lilac Lane
+    Pine Street 
+     16 Hitching Post Road
+    Hitching Post Road and Morgan Circle
+    Market Hill Road 
+    489 Market Hill Road
+    555 Market Hill Road 
+    Market Hill Road 
+    429 Henry Street 
+    772 N East Street
+    762 N East Street 
+    752 N East Street 
+    335 N East Street 
+    220 NEast Street
+    8 Hedgerow Lane 
+    30 Hedgerow Lane 
+    25 Hedgerow Lane 
+    Fort River Elementary School 
+#     );
+#stops[2][6][1] = new Array(
+    S East Street 
+    22 Valley View Drive
+    51 Valley View Drive 
+    28 Valley View Circle 
+    39 Valley View Circle 
+    51 Valley View Drive 
+    15 EveningStar Drive
+    15 EveningStar Drive 
+    943 South East Street 
+    51 Station Road 
+    764 South East Street 
+    706 South East Street 
+    South East Street 
+    496 South East Street
+    488 South East Street 
+    23 Tamarack Drive 
+    Willow Street and Tamarack Street
+    280 S East Street 
+    
+    
+    
+    Fort River Elementary School 
+#    );
+#stops[2][7][1] = new Array(
+    
+    
+#'
+    
+    
+    
+    
+    
+    66 Larkspur Drive 
+    74 Larkspur Drive 
+    95 Larkspur Drive 
+    Larkspur Drive 
+    108 Larkspur Drive
+    6 Ladyslipper Circle
+    2 Ladyslipper Circle 
+    Wildflower Drive and Teaberry Lane
+    166 Wildflower Drive
+    179 Wildflower Drive 
+    8 Summerfield Road 
+    11 tanglewood Road 
+    19 Tanglewood Road
+    16 White Pine
+    35 Tanglewood Road 
+    44 Tanglewood Road
+    19 Tanglewood Road
+    11 White Pine 
+    intesection of White Pine Street and  Summerfield Road
+    28 Summerfield Road 
+    36 Summerfield Road 
+    30 Summerfield Road
+    Summerfield Road and White Pine Street
+    488 Old Farm Road 
+    321 Old Farm Road 
+    Fort River Elementary School 
+#   );
+
+
+#
+#stops[3] = new Array();
+#stops[3][0] = new Array();
+#stops[3][0][0] = new Array();
+#stops[3][1] = new Array();
+#stops[3][1][0] = new Array();
+#stops[3][2] = new Array();
+#stops[3][2][0] = new Array();
+#stops[3][3] = new Array();
+#stops[3][3][0] = new Array();
+#stops[3][4] = new Array();
+#stops[3][4][0] = new Array();
+#stops[3][5] = new Array();
+#stops[3][5][0] = new Array();
+
+#stops[3][0][1] = new Array(
+#"1159 South East Street
+    1350 South East Street
+    1641 South East Street
+    817 Bay Road
+    1045 Bay Road
+    1185 Bay Road
+    19 Elf Hill Road
+    Arrow head Lane and Stagecoach
+    40 Hulst Road
+    Hulst Road and Arrow head Lane
+    67 Hulst Road
+    34 Elf Hill Road
+    1136 Bay Road
+    1070 Bay Road
+    746 Bay Road
+    190 Middle Street
+    Crocker Farm Elementary School
+# );
+
+#stops[3][1][1] = new Array(
+    Rambling Road
+    Autumn Lane and Rambling Road 
+    Rambling Road and Country Corners Road
+    556 Bay Road
+    chapel Road and Bay Road
+    25 Chapel Road
+    670 Bay Road
+    620 Bay Road
+    610 Bay Road
+    5 South Orchard Drive
+    35 South Orchard Drive
+    384 Middle Street
+    335 Middle Street
+    330 Middle Street
+    265 Potwine Lane
+    646 West Street
+    630 West Street
+    15 Kamins Circle
+    18 Kamins Circle
+    Crocker Farm Elementary School
+# );
+#stops[3][2][1] = new Array(
+    37 Greenwich Road
+    49 Greenwich Road
+    60 Greenwich Road
+    37 Deepwoods Drive
+    49 Deepwoods Drive
+    50 Deepwoods Drive
+    Farmington Road and Applewood Lane
+    223 Glendale Road
+    134 Glendale Road
+    105 Glendale Road
+    76 Glendale Road
+    20 Glendale Road
+    152 West Street
+    130 Brittany Manor
+    77 Brittany Manor
+    Crocker Farm Elementary School
+# );
+#stops[3][3][1] = new Array(
+    Columbia Drive
+    Columbia Drive and Justice Drive
+    61 Justice Drive
+    287 Riverglade Drive
+    500 Mill Valley Estates
+    700 Mill Valley Estates
+    300 Mill Valley Estates
+    252 West Street
+    Crocker Farm Elementary School
+# );
+#stops[3][4][1] = new Array(
+    West Pomeroy Lane
+    326 West Pomeroy Lane
+    306 West Pomeroy Lane
+    116 West Pomeroy Lane
+    68 West Pomeroy Lane
+    E Hadley Road and Southpoint Drive
+    11 SouthPoint Drive
+    44 SouthPoint Drive
+    95 SouthPoint Drive
+    120 Brittany Manor
+    127 Brittany Manor
+    149 Brittany Manor
+    Crocker Farm Elementary School
+# );
+#stops[3][5][1] = new Array(
+    Village Park
+    105 Village Park
+    170 Village Park
+    2 Shays Street
+    49 Shays Street
+    159 Shays Street
+    266 Shays Street
+    324 Pomeroy Drive
+    3 Carriage Road
+    37 Carriage Road
+    34 Pomeroy Lane
+    54 Longmeadow Drive
+    132 Farmington Road
+    Brookside Court and Pondview Drive
+    Western Lane and Pondview Drive
+    Atwater Circle and Pondview Drive
+    114 Pondview Driveve
+    82 Pondview Drive
+    Lantern Lane and  Pondview Drive
+    35 Farmington Road
+    142 Tracy Circle
+    120 Tracy Circle
+    112 Tracy Circle
+    Crocker Farm Elementary School
+# );
+
+
+#
+#stops[4] = new Array();
+#stops[4][0] = new Array();
+#stops[4][0][0] = new Array();
+#stops[4][1] = new Array();
+#stops[4][1][0] = new Array();
+#stops[4][2] = new Array();
+#stops[4][2][0] = new Array();
+#stops[4][3] = new Array();
+#stops[4][3][0] = new Array();
+#stops[4][4] = new Array();
+#stops[4][4][0] = new Array();
+#stops[4][5] = new Array();
+#stops[4][5][0] = new Array();
+
+
+#stops[4][0][1] = new Array(
+    South Pleasant Street
+    227 South Pleasant Street
+    Memorial Drive and So Pleasant Street
+    Jeffrey Lane and So Pleasant Street
+    41 East Hadley Road
+    17 Columbia Drive
+    70 Columbia Drive
+    87 Columbia Drive
+    100 Columbia Drive
+    55 Chesterfield Drive
+    482 South Pleasant Street
+    446 So Pleasant Street
+    Moody Fields Street and Snell Street
+    128 Snell Street
+    South Pleasant Street at Amherst College 
+    Merrill Place
+    369 Strong Street
+    Strong Street and Maplewood Drive
+    222 Strong Street
+    Wildwood elementary school
+#     );
+#stops[4][1][1] = new Array(
+    702  E. Pleasant Street
+    763 East Pleasant Street
+    Grantwood and  Blackberry
+    66 Grantwood Drive
+    154 Grantwood Drive
+    288 Grantwood Drive
+    16 Jason Court
+    28 Kingman Road
+    39 Kingman Road
+    45 Kingman Road
+    15 Tuckerman Lane
+    5 Tuckerman Lane
+    Sacco Drive and Blackberry Lane
+    Blackberry Lane and Forestedge Road
+    18 Blackberry Lane
+    71 Cherry Lane
+    Cherry Lane and  Weaver Circle
+    125 Cherry Lane
+    156 Cherry Lane
+    189 Cherry Lane
+    167 Cherry Lane
+    31 Emily Lane
+    7 Emily Lane
+    Emily Lane
+    23 Sheerman Lane
+    East Pleasant Street and Orchard Hill Drive
+    WILDWOOD elementary school
+#     );
+#stops[4][2][1] = new Array(
+    33 Hallock Street
+    45 Hallock Street
+    43 South Prospect Street
+    Northampton Road and Kendrick Place
+    24 Lincoln Avenue
+    Lincoln Avenue and Gaylord Street
+    Amity Street and Sunset Avenue
+    273 Amity Street
+    Dana Street and Dana Place
+    99 Dana Street
+    163 Northampton Road
+    116 Blue Hills Road
+    41 Blue Hills Road
+    15 Blue Hills Road
+    Amity Place and Amity Street
+    3 Charles Lane
+    23 Charles Lane
+    University Drive and Snell Street
+    260 Northampton Road
+    Northampton Road and Hazel Avenue
+    23 Orchard Street
+    100 Woodside Avenue
+    78 Woodside Avenue
+    58 Woodside Avenue
+    15 Woodside Avenue
+    87 East Pleasant Street
+    WILDWOOD elementary school
+#     );
+#stops[4][3][1] = new Array(
+    120 Pulpit Hill Road
+    Pulpit Hill and Mill Road
+    
+    
+    Pine Street and 120 Pulpit Hill Road
+    965 East Pleasant Street
+    20 Harlow Drive
+    21 Frost Lane
+    29 Hartman Road
+    24 Ridgecrest Road
+    80 Van Meter Drive
+    35 Van Meter Drive
+    105 Village Park
+    170 Village Park
+    188 Village Park
+    WILDWOOD elementary school 
+#     );
+#stops[4][4][1] = new Array(
+    Chestnut Street
+    Triangle Street and Smith Street
+    Lessey and Churchill Street
+    17 Seelye Street
+    34 Dickinson Street
+    20 Dickinson Street
+    Jones Library
+    148 Lincoln Avenue
+    157 Lincoln Avenue
+    216 Lincoln Avenue
+    Mcclellan Street and Paige Street
+    Mcclellan Street and Beston Street
+    290 North Pleasant Street
+    100 Fearing Street
+    315 Lincoln Avenue
+    Lincoln Avenue and Lincoln Apts.
+    North Hadley Road and Mcclure Street
+    138 Sunset Avenue
+    Sunset Avenue and Elm Street
+    26 Sunset Avenue
+    32 Gray Street
+    133 Gray Street
+    108 Gray Street
+    North Whitney and Harvard Avenue
+    18 Red Gate Lane
+    WILDWOOD elementary school 
+#     );
+#stops[4][5][1] = new Array(
+    187 East Hadley Road
+    6 Chesterfield Drive
+    141 Columbia Drive
+    33 Hunters Hill Circle
+    255 East Hadley Road
+    Whippletree Lane
+    Wintergreen And Whippletree
+    28 Whippletree Lane
+    45 Southpoint
+    85 Southpoint
+    300 Mill Valley Estates  
+    700 Mill Valley Estates
+    500 Mill Valley Estates
+    WILDWOOD elementary school
+#   );
+
+
+#
+#stops[5] = new Array();
+#stops[5][0] = new Array();
+#stops[5][0][0] = new Array();
+#stops[5][1] = new Array();
+#stops[5][1][0] = new Array();
+
+#stops[5][0][1] = new Array(
+    376 Pelham Hill Road
+    4 Amherst Road,Pelham 
+    5 Amherst Road,Pelham
+    Amherst Road and Jones Road,Pelham
+    Amherst Road and Arnold Road,Pelham
+    Amherst Road,Pelham
+    115 Amherst Road,Pelham
+    131 Amherst Road,Pelham
+    194 Amherst Road,Pelham
+    Amherst Road and  Bray Court,Pelham
+    276 Amherst Road,Pelham
+    Amherst Road and No Valley Road,Pelham
+    290 Amherst Road,Pelham
+    315 Amherst Road,Pelham 
+    29 Shutesbury Road,Pelham 
+    312 Daniel Shays Highway,Pelham 
+    298 Daniel Shays Highway,Pelham 
+    242 Daniel Shays Highway,Pelham 
+    46 Daniel Shays Highway,Pelham 
+    17 Daniel Shays Highway,Pelham 
+    166 Packardville Road,Pelham 
+    Gulf Road and Packardville Road,Pelham 
+    71 Enfield Road,Pelham 
+    Enfield Road and Butterhill Road,Pelham 
+    11 Enfield Road,Pelham 
+    Amherst Road and Country Lane,Pelham 
+    46 Arnold Road,Pelham 
+    59 Amherst Road,Pelham 
+    57 Amherst Road,Pelham 
+    52 Amherst Road,Pelham 
+    Pelham Elementary School,Pelham 
+#     );
+#stops[5][1][1] = new Array(
+    Buffam Road,Pelham 
+    155 Buffam Road,Pelham 
+    Buffam Road and Boyden Road,Pelham 
+    12 Boyden Road,Pelham 
+    12 Boyden Road,Pelham 
+    43/42 Boyden Road,Pelham 
+    80 Buffam Road,Pelham 
+    78 Buffam Road,Pelham 
+    144 North Valley Road,Pelham
+    172 North Valley Road,Pelham 
+    199 North Valley Road,Pelham 
+    213 North Valley Road,Pelham 
+    38 Amherst Road,Pelham 
+    33 Amherst Road,Pelham 
+    33 Amherst Road,Pelham 
+    4 Harkness Road,Pelham 
+    19 Harkness Road,Pelham 
+    Harkness Road and So Valley Road,Pelham 
+    Harkness Road and Dayton Lane,Pelham 
+    88 Harkness Road,Pelham 
+    72 Harkness Road,Pelham 
+    60 Harkness Road,Pelham 
+    Pelham Elementary School,Pelham 
+#);
