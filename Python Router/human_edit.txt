@@ -1,42 +1,33 @@
- 131 north leverett rd   amherst, ma 01002
+ 131 north leverett rd   amherst, ma 01002 (42.42347, -72.51000)
 
- 134 north leverett rd   amherst, ma 01002
+ 134 north leverett rd   amherst, ma 01002 (42.42347, -72.51000) 
 
- 141 pratt corner rd   amherst, ma 01002
+ 141 pratt corner rd   amherst, ma 01002 (42.40757, -72.45835)
 
- 162 north leverett rd   amherst, ma 01002
+ 162 north leverett rd   amherst, ma 01002 (42.42683, -72.51056)
 
- 168 north leverett rd   amherst, ma 01002
+ 168 north leverett rd   amherst, ma 01002 (42.42705, -72.51067)
 
- 172 north leverett rd   amherst, ma 01002
+ 172 north leverett rd   amherst, ma 01002 (42.42700, -72.51071)
 
- 220 neast st   amherst, ma 01002
+ 220 neast st   amherst, ma 01002 (42.38457, -72.49959)
 
- 220 north leverett rd   amherst, ma 01002
+ 220 north leverett rd   amherst, ma 01002 (42.42750, -72.51065)
 
- 253 shutesbury rd   amherst, ma 01002
+ 253 shutesbury rd   amherst, ma 01002 (42.40503, -72.49009)
 
- 258 pratt corner rd   amherst, ma 01002
+ 258 pratt corner rd   amherst, ma 01002 (42.40470, -72.45028)
 
- 260 long plain rd   amherst, ma 01002
+ 260 long plain rd   amherst, ma 01002 (42.44479, -72.53133)
 
- 298 long plain rd   amherst, ma 01002
+ 298 long plain rd   amherst, ma 01002 (42.44466, -72.53142)
 
- 56 pratt corner rd   amherst, ma 01002
+ 56 pratt corner rd   amherst, ma 01002 (42.40562, -72.45162)
 
- 69 pratt corner rd   amherst, ma 01002
+ 69 pratt corner rd   amherst, ma 01002 (42.40624, -72.45346)
 
- 74 pratt corner rd   amherst, ma 01002
+ 74 pratt corner rd   amherst, ma 01002 (42.40641, -72.45453)
 
- amherst rd   pelham, ma 01002
+ high point dr and overlook dr   amherst, ma 01002 (42.4189, -72.4862)
 
- high point dr and overlook dr   amherst, ma 01002
-
- jones library   amherst, ma 01002
-
- s east st   amherst, ma 01002
-
- south east st   amherst, ma 01002
-
- south pleasant st   amherst, ma 01002
-
+ jones library   amherst, ma 01002 (42.37670, -72.52073)

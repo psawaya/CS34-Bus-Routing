@@ -22,8 +22,21 @@ class Tour(object):
         self.nodes = dict(zip(self.names, map(TourNode, self.names)))
         self.distances = distances
         self.score = sys.maxint
+        self.heat = 1.0
         random.shuffle(self.names)
         self.tourFromIndices(self.names)
+        
+    def __init__(self, distances, indices, scramble_indices=False):
+        self.names = indices
+        self.nodes = dict(zip(indices, map(TourNode, indices)))
+        self.distances = distances
+        self.score = sys.maxint
+        self.heat = 1.0
+        
+        if scramble_indices:
+            random.shuffle(indices)
+        
+        self.tourFromIndices(indices)
 
     def tourFromIndices(self, ind):
         pairs = [(ind[i], ind[i+1]) for i in range(len(ind)-1)]
@@ -82,6 +95,26 @@ class Tour(object):
             ndist += self.distances.getCost(n2p.name, node1.name)
             ndist += self.distances.getCost(node1.name, n2n.name)
         return self.score - odist + ndist
+    
+    def annealSwap(self):
+        n1,n2,tscore = self.randomPair()
+        
+        if tscore < self.score:
+            self.swap(n1,n2)
+            return True
+        else:
+            # print "a: %s b: %s " % (random.random(),self.heat)
+            if random.random() < self.heat:
+                self.swap(n1,n2)                
+                return True
+
+            return False
+
+    def randomPair(self):
+        k1, k2 = random.sample(self.names, 2)
+        tscore = self.potentialSwap(k1,k2)
+        
+        return (k1,k2,tscore)
 
     def randSwap(self):
         k1, k2 = random.sample(self.names, 2)
