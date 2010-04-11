@@ -7,6 +7,8 @@
 	var placeMarker = false;
 	var map;
 	
+	var locations = [];
+	
 	function initialize() {
     var latlng = new google.maps.LatLng(42.323981, -72.5293562);
     var myOptions = {
@@ -27,24 +29,43 @@
 			var request = [];
 			
 			for (var x in tokens) {
-				geocoder.geocode({'address' : tokens[0] + " Amherst, MA"}, function(results, status) {
+				var locationObj = {
+					address : tokens[x] + " Amherst, MA"
+				};
 				
-				if (status != google.maps.GeocoderStatus.OK) return;
+				// locations.push ();
+				
+				
+				geocoder.geocode(locationObj);
+				
+				geocoder.geocode({'address' : tokens[0] + " Amherst, MA"}, function(results, status) {
+					if (status != google.maps.GeocoderStatus.OK) {
+						alert("Error geocoding address: " + tokens[0]);
+						return;
+					} 
+					
+					var newP = $('<p></p>').html(tokens[x] + " : ");
+					
+					var coordinates = (results[0].geometry.location);						
+					var coordsP = $('<p id="coordsP"></p>').html(""+coordinates);
+					var setCoordsButton = $('  <input type="submit" value="Change" id="changeButton">');
+					coordsP.append(setCoordsButton);
+				}
+				
+			}
+			
 						
-						var newP = $('<p></p>').html(tokens[x] + " : ");
+						
 
-						var coordinates = (results[0].geometry.location);						
-						var coordsP = $('<p id="coordsP"></p>').html(""+coordinates);
+
 						
 						
-						var setCoordsButton = $('  <input type="submit" value="Change" id="changeButton">');
-						coordsP.append(setCoordsButton);
+
 						
 						setCoordsButton.click(function (){
 							$(this).hide();
 							
 							placeMarker = newP;
-							
 							
 						});
 						
@@ -84,6 +105,8 @@
 		      position: loc, 
 		      map: map
 		  });
+
+		marker.hide();
 	}
 	</script>
 </head>
