@@ -57,9 +57,9 @@ class MultiTour:
 if __name__ == "__main__":
     multiTour = MultiTour()
     
-    multiTour.readRoutes('crockerStops.json')
+    multiTour.readRoutes('routesData/crockerStops.json')
     
     multiTour.correlateWithAddresses("../../routes/by_school/crocker.txt")
-    parser = Parser("crockerMatrix.txt")
+    parser = Parser("routesData/crockerMatrix.txt")
     
     multiTour.buildTours(parser)
