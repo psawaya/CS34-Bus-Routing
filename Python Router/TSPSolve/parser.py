@@ -1,17 +1,4 @@
 from Tour import Tour
-<<<<<<< HEAD
-=======
-
-import random
-import time
-
-class Parser:
-	def __init__(self,filename):
-		lines = []
-
-		with open (filename,'r') as f:
-			lines = [ l.strip() for l in f.readlines()]
->>>>>>> 1762398... fixd human_edit.txt, started basic support for annealing
 
 import random
 import time
@@ -41,7 +28,6 @@ class Parser:
 if __name__ == "__main__":
     random.seed(1337)
     
-<<<<<<< HEAD
     parser = Parser("crockerMatrix.txt")
     tour = Tour(parser)
     tour.printTour()
@@ -50,34 +36,16 @@ if __name__ == "__main__":
     print tour.score
     lscore = tour.score
     
-=======
-    parser = Parser("kro124p.atsp")
-    tour = Tour(parser)
-    tour.printTour()
-
-    print
-    print tour.score
-    lscore = tour.score
-
->>>>>>> 1762398... fixd human_edit.txt, started basic support for annealing
     deltaE = -0.01
     
     iterationsOfNoChange = 0
     
     reheat = False
-<<<<<<< HEAD
     
     while True:
         prevScore = tour.score
         
         if tour.annealSwap():
-=======
-
-    while True:
-        prevScore = tour.score
-        
-        if tour.annealSwap():            
->>>>>>> 1762398... fixd human_edit.txt, started basic support for annealing
             print "score = %i, heat = %f, all time best = %i" % (tour.score,tour.heat,lscore)
             
             iterationsOfNoChange = 0
@@ -87,11 +55,7 @@ if __name__ == "__main__":
         
         if tour.score == prevScore:
             iterationsOfNoChange += 1
-<<<<<<< HEAD
         
-=======
-            
->>>>>>> 1762398... fixd human_edit.txt, started basic support for annealing
         if reheat and iterationsOfNoChange > 1 and tour.heat <= 0:
             tour.heat = random.random()
             
