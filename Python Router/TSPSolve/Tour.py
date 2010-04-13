@@ -37,6 +37,25 @@ class Tour(object):
             random.shuffle(indices)
         
         self.tourFromIndices(indices)
+    
+    def tourNamesArray(self):
+        namesArray = []
+        
+        #Consistently start with the same node
+        firstNode = self.nodes.items()[0][1]
+        nextNode = firstNode
+        
+        while True :
+            
+            print nextNode
+            
+            namesArray.append(nextNode.name)
+            nextNode = nextNode.getNext()
+            
+            if nextNode == firstNode:
+                break
+        
+        return namesArray
 
     def tourFromIndices(self, ind):
         pairs = [(ind[i], ind[i+1]) for i in range(len(ind)-1)]
