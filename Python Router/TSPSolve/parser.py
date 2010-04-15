@@ -114,29 +114,32 @@ if __name__ == "__main__":
     iterationsOfNoChange = 0
     
     reheat = False
-    
-    while True:
-        prevScore = tour.score
-        
-        if tour.annealSwap():
-            print "score = %i, heat = %f, all time best = %i" % (tour.score,tour.heat,lscore)
-            
-            iterationsOfNoChange = 0
-            
-            if tour.score < lscore:
-                lscore = tour.score
-        
-        if tour.score == prevScore:
-            iterationsOfNoChange += 1
-        
-        if reheat and iterationsOfNoChange > 1 and tour.heat <= 0:
-            tour.heat = random.random()
-            
-            print "reheating to %s" % tour.heat
-            time.sleep(2)
-        
-        if tour.heat > 0:
-            tour.heat += deltaE
-    
-    print tour.score
-    tour.printTour()
+
+    try:
+        while True:
+            prevScore = tour.score
+
+            if tour.randTwoOptMove():
+                print "score = %i, heat = %f, all time best = %i" % (tour.score,tour.heat,lscore)
+
+                iterationsOfNoChange = 0
+
+                if tour.score < lscore:
+                    lscore = tour.score
+
+            if tour.score == prevScore:
+                iterationsOfNoChange += 1
+
+            if reheat and iterationsOfNoChange > 1 and tour.heat <= 0:
+                tour.heat = random.random()
+
+                print "reheating to %s" % tour.heat
+                time.sleep(2)
+
+            if tour.heat > 0:
+                tour.heat += deltaE
+    except KeyboardInterrupt:
+        pass
+    print
+    print "score =", tour.score
+    print " tour =", tour.printTour()
