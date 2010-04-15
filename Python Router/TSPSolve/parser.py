@@ -2,6 +2,9 @@
 
 from Tour import Tour
 
+import random
+import time
+
 class ParseError(RuntimeError):
     pass
 
@@ -94,20 +97,46 @@ class MapInfo:
         return len(self.matrix)
 
 if __name__ == "__main__":
-    import sys
-    mapinfo = Parser().parse(sys.argv[1])
+    random.seed(1337)
+
+    mapinfo = Parser().parse("crockerMatrix.txt")
     tour = Tour(mapinfo, use_best=True)
+
     print "Starting tour:"
     tour.printTour()
-    print "score:", tour.score
+    
+    print
+    print tour.score
     lscore = tour.score
-    for i in range(1000):
-        if tour.score < lscore:
-            lscore = tour.score
-            print "improved:", tour.score
-        tour.randGreedySwap()
-        #tour.randTwoOptMove()
-    #print tour.score
-    print "Final tour:"
+    
+    deltaE = -0.01
+    
+    iterationsOfNoChange = 0
+    
+    reheat = False
+    
+    while True:
+        prevScore = tour.score
+        
+        if tour.annealSwap():
+            print "score = %i, heat = %f, all time best = %i" % (tour.score,tour.heat,lscore)
+            
+            iterationsOfNoChange = 0
+            
+            if tour.score < lscore:
+                lscore = tour.score
+        
+        if tour.score == prevScore:
+            iterationsOfNoChange += 1
+        
+        if reheat and iterationsOfNoChange > 1 and tour.heat <= 0:
+            tour.heat = random.random()
+            
+            print "reheating to %s" % tour.heat
+            time.sleep(2)
+        
+        if tour.heat > 0:
+            tour.heat += deltaE
+    
+    print tour.score
     tour.printTour()
-    print "score:", tour.score

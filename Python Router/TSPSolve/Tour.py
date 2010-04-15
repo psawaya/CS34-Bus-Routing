@@ -25,11 +25,32 @@ class Tour(object):
         self.nodes = dict(zip(self.names, map(TourNode, self.names)))
         self.distances = distances
         self.score = sys.maxint
+        self.heat = 1.0
         if use_best and self.distances.best_known is not None:
             self.tourFromIndices(self.distances.best_known)
         else:
             random.shuffle(self.names)
             self.tourFromIndices(self.names)
+
+    def tourNamesArray(self):
+        namesArray = []
+        
+        #Consistently start with the same node
+        firstNode = self.nodes.items()[0][1]
+        nextNode = firstNode
+        
+        while True :
+            
+            print nextNode
+            
+            namesArray.append(nextNode.name)
+            nextNode = nextNode.getNext()
+            
+            if nextNode == firstNode:
+                break
+        
+        return namesArray
+
 
     def tourFromIndices(self, ind):
         pairs = [(ind[i], ind[i+1]) for i in range(len(ind)-1)]
@@ -69,6 +90,26 @@ class Tour(object):
         new += self.getCost(n2p.name, node1.name)
         new += self.getCost(node1.name, n2n.name)
         return self.score - old + new
+
+    def annealSwap(self):
+        n1,n2,tscore = self.randomPair()
+        
+        if tscore < self.score:
+            self.swap(n1,n2)
+            return True
+        else:
+            # print "a: %s b: %s " % (random.random(),self.heat)
+            if random.random() < self.heat:
+                self.swap(n1,n2)                
+                return True
+
+            return False
+
+    def randomPair(self):
+        k1, k2 = random.sample(self.names, 2)
+        tscore = self.potentialSwap(k1,k2)
+        
+        return (k1,k2,tscore)
 
     def swap(self, n1, n2):
         self.score = self.potentialSwap(n1, n2)
