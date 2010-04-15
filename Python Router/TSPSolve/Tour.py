@@ -32,26 +32,6 @@ class Tour(object):
             random.shuffle(self.names)
             self.tourFromIndices(self.names)
 
-    def tourNamesArray(self):
-        namesArray = []
-        
-        #Consistently start with the same node
-        firstNode = self.nodes.items()[0][1]
-        nextNode = firstNode
-        
-        while True :
-            
-            print nextNode
-            
-            namesArray.append(nextNode.name)
-            nextNode = nextNode.getNext()
-            
-            if nextNode == firstNode:
-                break
-        
-        return namesArray
-
-
     def tourFromIndices(self, ind):
         pairs = [(ind[i], ind[i+1]) for i in range(len(ind)-1)]
         self.setNext(self.nodes[pairs[-1][1]],self.nodes[pairs[0][0]])
@@ -143,6 +123,8 @@ class Tour(object):
         tscore = self.potentialSwap(k1,k2)
         if tscore < self.score:
             self.swap(k1, k2)
+            return True
+        return False
 
     ### 2-Opt ###
     def twoOptScore(self, v1, v2, v3, v4):
@@ -177,15 +159,17 @@ class Tour(object):
         case = random.randint(0,1)
         #print self.getPrev(k1), k1, self.getNext(k1), self.getPrev(k2), k2, self.getNext(k2)
         if case == 0:
-            self.greedyTwoOptMove(k1, self.getNext(k1), k2, self.getNext(k2))
+            return self.greedyTwoOptMove(k1, self.getNext(k1), k2, self.getNext(k2))
         elif case == 1:
-            self.greedyTwoOptMove(self.getPrev(k1), k1, self.getPrev(k2), k2)
+            return self.greedyTwoOptMove(self.getPrev(k1), k1, self.getPrev(k2), k2)
 
     def greedyTwoOptMove(self, v1, v2, v3, v4):
         tscore = self.twoOptScore(v1,v2,v3,v4)
         if tscore < self.score:
             self.twoOptMove(v1,v2,v3,v4)
             self.score = tscore
+            return True
+        return False
 
     ### Util ###
     def getPrev(self, v):
