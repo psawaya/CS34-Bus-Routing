@@ -3,6 +3,7 @@
 from Tour import Tour
 
 import random
+import sys
 import time
 
 class ParseError(RuntimeError):
@@ -99,20 +100,20 @@ class MapInfo:
 if __name__ == "__main__":
     random.seed(1337)
 
-    mapinfo = Parser().parse("crockerMatrix.txt")
+    mapinfo = Parser().parse(sys.argv[1])
     tour = Tour(mapinfo, use_best=True)
 
     print "Starting tour:"
     tour.printTour()
-    
+
     print
     print tour.score
     lscore = tour.score
-    
+
     deltaE = -0.01
-    
+
     iterationsOfNoChange = 0
-    
+
     reheat = False
 
     try:
