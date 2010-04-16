@@ -27,11 +27,11 @@
             
             switch($("input[@name='beforeOrAfter']:checked").val()) {
                 case 'b':
-                    drawTour(beforeData[routeNum]);
+                    drawTour(beforeData['routes'][routeNum]);
                     break;
                     
                 case 'a':
-                    drawTour(afterData[routeNum]);
+                    drawTour(afterData['routes'][routeNum]);
                     break;    
                     
                 case 'd':
@@ -80,8 +80,15 @@ function fetchJSON() {
 function populateAndShowSelectTour() {
     $("#routeSelect option:first").remove(); //chrome needs a dummy element, remove it now
     
-    for (var stop in beforeData)
+    for (var stop in beforeData['routes'])
         $('#routeSelect').append("<option>" + stop + "</option>");
+    
+    var baseMarker = new google.maps.Marker({
+      position: new google.maps.LatLng(beforeData['base']['coords'][0],beforeData['base']['coords'][1]),
+      map: map
+    });
+    
+    attachMessageToMarker(beforeData['base']['name'],baseMarker);
 
     $('#tourSelectDiv').show();
 }
@@ -107,23 +114,12 @@ function clearTour() {
 function drawDifferences(routeNum) {
     drawTour(beforeData[routeNum]);
 
-    function attachMessageToMarker(msg,marker) {
-        var infowindow = new google.maps.InfoWindow(
-            { content: msg,
-              size: new google.maps.Size(50,50)
-            });
-
-         google.maps.event.addListener(marker, 'click', function() {
-               infowindow.open(map,marker);
-         });
-    }
-
     //TODO: proper diff
 
-    for (var stop in beforeData[routeNum]) {
+    for (var stop in beforeData['routes'][routeNum]) {
         
-        var beforeStopObj = beforeData[routeNum][stop];
-        var afterStopObj = afterData[routeNum][stop];        
+        var beforeStopObj = beforeData['routes'][routeNum][stop];
+        var afterStopObj = afterData['routes'][routeNum][stop];        
         
         
         if (beforeStopObj[0] != afterStopObj[0]) { //compares stop idx        
@@ -182,7 +178,20 @@ function drawTour(tour) {
      // }
 }
 
+//Helper functions
+
 function randomColor() { return 'rgb(' + parseInt(Math.random()*255) + ','  + parseInt(Math.random()*255) + ',' + parseInt(Math.random()*255) + ")"; }
+
+function attachMessageToMarker(msg,marker) {
+    var infowindow = new google.maps.InfoWindow(
+        { content: msg,
+          size: new google.maps.Size(50,50)
+        });
+
+     google.maps.event.addListener(marker, 'click', function() {
+           infowindow.open(map,marker);
+     });
+}
 
 </script>
 </head>
@@ -198,6 +207,8 @@ function randomColor() { return 'rgb(' + parseInt(Math.random()*255) + ','  + pa
         <input type="radio" name="beforeOrAfter" value="d"> Differences
           
           <input type="submit" value="draw" id="drawButton">
+          
+          <span style="background-color:#00ff00;width:5px"> </span>
       </div>
   </div>
 </body>

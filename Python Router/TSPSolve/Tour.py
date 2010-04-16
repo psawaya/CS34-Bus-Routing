@@ -20,17 +20,20 @@ class TourNode(object):
         return None
 
 class Tour(object):
-    def __init__(self, distances, use_best=False):
-        self.names = range(len(distances))
+    def __init__(self, distances, names=None, start_route=None, use_best=False):
+        self.names = names or range(len(distances))
         self.nodes = dict(zip(self.names, map(TourNode, self.names)))
         self.distances = distances
         self.score = sys.maxint
         self.heat = 1.0
-        if use_best and self.distances.best_known is not None:
-            self.tourFromIndices(self.distances.best_known)
+        if start_route is not None:
+            self.tourFromIndices(start_route)
         else:
-            random.shuffle(self.names)
-            self.tourFromIndices(self.names)
+            if use_best and self.distances.best_known is not None:
+                self.tourFromIndices(self.distances.best_known)
+            else:
+                random.shuffle(self.names)
+                self.tourFromIndices(self.names)
 
     def tourFromIndices(self, ind):
         pairs = [(ind[i], ind[i+1]) for i in range(len(ind)-1)]
@@ -39,6 +42,20 @@ class Tour(object):
             f,s = pairs[i]
             self.setNext(self.nodes[f], self.nodes[s])
         self.score = self.getScore()
+        
+    def tourToIndices(self):
+        np = self.nodes.values()[0]
+        first_node_name = np.name
+        prev = np.prev
+        
+        tourIndices = [first_node_name]
+        
+        while np.next.name != first_node_name:
+            prev, np = np, np.traverse(prev)
+            
+            tourIndices.append(np.name)
+
+        return tourIndices
 
     ### Node Swapping ###
     def potentialSwap(self, n1, n2):
@@ -170,6 +187,23 @@ class Tour(object):
             self.score = tscore
             return True
         return False
+        
+    def annealTwoOpt(self):
+        n1,n3,_ = self.randomPair()
+        
+        n2 = self.getNext(n1)
+        n4 = self.getNext(n3)
+        
+        tscore = self.twoOptScore(n1,n2,n3,n4)
+        
+        # print "my score: %s two opt score: %s" % (self.score, tscore)
+        
+        if tscore < self.score or random.random() < self.heat:
+            self.twoOptMove(n1,n2,n3,n4)
+            self.score = tscore #twoOptMove doesn't update score
+            return True
+
+        return False
 
     ### Util ###
     def getPrev(self, v):
@@ -204,10 +238,11 @@ class Tour(object):
         print
 
     def getScore(self):
-        np = self.nodes.get(0)
+        np = self.nodes.values()[0]
+        first_node_name = np.name
         prev = np.prev
         score = 0
-        while np.next.name != 0:
+        while np.next.name != first_node_name:
             score += self.getCost(np.name, np.next.name)
             prev, np = np, np.traverse(prev)
         return score + self.getCost(np.name, np.next.name)
