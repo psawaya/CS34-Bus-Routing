@@ -1,92 +1,76 @@
 import random
 import sys
 
+class Cycle(list):
+    def __getitem__(self, i):
+        return list.__getitem__(self, i % len(self))
+    def __setitem__(self, i, v):
+        list.__setitem__(self, i % len(self), v)
+    def __getslice__(self, i, j):
+        i = i % len(self)
+        j = j % len(self)
+        if i < j:
+            return list.__getslice__(self, i, j)
+        else:
+            #if i == len(self) and j == 0:
+            #    return [self[-1]]
+            return list.__getslice__(self, i, len(self)) + list.__getslice__(self, 0, j)
+    def __setslice__(self, i, j, v):
+        i = i % len(self)
+        j = j % len(self)
+        if i < j:
+            list.__setslice__(self, i, j, v)
+        else:
+            list.__setslice__(self, i, len(self), v[:len(self)-i])
+            list.__setslice__(self, 0, j, v[len(self)-i:])
+
+
 class TourNode(object):
-    def __init__(self, name, prev=None, next=None):
+    def __init__(self, name, heads=1):
         self.name = name
-        self.prev = None
-        self.next = None
-    def traverse(self, prev):
-        if prev == self.prev:
-            return self.next
-        return self.prev
-    def getPrev(self):
-        if self.prev:
-            return self.prev
-        return None
-    def getNext(self):
-        if self.next:
-            return self.next
-        return None
+        self.heads = heads
 
 class Tour(object):
-    def __init__(self, distances, names=None, start_route=None, use_best=False):
+    def __init__(self, distances, names=None, use_best=False):
         self.names = names or range(len(distances))
-        self.nodes = dict(zip(self.names, map(TourNode, self.names)))
+        self.nodes = map(TourNode, self.names)
         self.distances = distances
         self.score = sys.maxint
         self.heat = 1.0
-        if start_route is not None:
-            self.tourFromIndices(start_route)
+        if use_best and self.distances.best_known is not None:
+            self.tour = self.distances.best_known[:]
         else:
-            if use_best and self.distances.best_known is not None:
-                self.tourFromIndices(self.distances.best_known)
-            else:
-                random.shuffle(self.names)
-                self.tourFromIndices(self.names)
-
-    def tourFromIndices(self, ind):
-        pairs = [(ind[i], ind[i+1]) for i in range(len(ind)-1)]
-        self.setNext(self.nodes[pairs[-1][1]],self.nodes[pairs[0][0]])
-        for i in range(len(pairs)):
-            f,s = pairs[i]
-            self.setNext(self.nodes[f], self.nodes[s])
-        self.score = self.getScore()
-        
-    def tourToIndices(self):
-        np = self.nodes.values()[0]
-        first_node_name = np.name
-        prev = np.prev
-        
-        tourIndices = [first_node_name]
-        
-        while np.next.name != first_node_name:
-            prev, np = np, np.traverse(prev)
-            
-            tourIndices.append(np.name)
-
-        return tourIndices
+            self.tour = Cycle(self.names[:])
+            random.shuffle(self.tour)
+        self.score = self.calcScore()
 
     ### Node Swapping ###
-    def potentialSwap(self, n1, n2):
-        node1 = self.nodes.get(n1)
-        node2 = self.nodes.get(n2)
-        n1p = node1.getPrev()
-        n1n = node1.getNext()
-        n2p = node2.getPrev()
-        n2n = node2.getNext()
-        # handle swaps between adjacent nodes
-        if n1p == node2 and n2n == node1:
-            # order: x-node2-node1-y
-            # translate to x-node1-node2-y
-            node1, node2 = node2, node1
-            n1p, n2n = n2p, n1n
-            n2p = node2
-            n1n = node1
-        elif n1n == node2 and n2p == node1:
-            # order: x-node1-node2-y
-            n2p = node2
-            n1n = node1
-        old  = self.getCost(n1p.name, node1.name)
-        old += self.getCost(node1.name, n1n.name)
-        old += self.getCost(n2p.name, node2.name)
-        old += self.getCost(node2.name, n2n.name)
+    def scoreSwap(self, n1, n2):
+        if abs(n2 - n1) <= 1 or abs(n2 - n1) == len(self.tour) - 1:
+            old  = self.calcPartialScore(self.tour[n1-1:n2+2])
+            new  = self.calcPartialScore([self.tour[n1-1], self.tour[n2], self.tour[n1], self.tour[n2+1]])
+        else:
+            old  = self.calcPartialScore(self.tour[n1-1:n1+2])
+            old += self.calcPartialScore(self.tour[n2-1:n2+2])
+            new  = self.calcPartialScore([self.tour[n1-1], self.tour[n2], self.tour[n1+1]])
+            new += self.calcPartialScore([self.tour[n2-1], self.tour[n1], self.tour[n2+1]])
 
-        new  = self.getCost(n1p.name, node2.name)
-        new += self.getCost(node2.name, n1n.name)
-        new += self.getCost(n2p.name, node1.name)
-        new += self.getCost(node1.name, n2n.name)
         return self.score - old + new
+
+    def swap(self, i, j):
+        self.score = self.scoreSwap(i, j)
+        self.tour[i], self.tour[j] = self.tour[j], self.tour[i]
+
+    def greedySwap(self, k1, k2):
+        tscore = self.scoreSwap(k1,k2)
+        if tscore < self.score:
+            self.swap(k1, k2)
+            return True
+        return False
+
+    def randGreedySwap(self):
+        k1, k2 = random.sample(self.names, 2)
+        self.greedySwap(k1, k2)
 
     def annealSwap(self):
         n1,n2,tscore = self.randomPair()
@@ -104,87 +88,38 @@ class Tour(object):
 
     def randomPair(self):
         k1, k2 = random.sample(self.names, 2)
-        tscore = self.potentialSwap(k1,k2)
+        tscore = self.scoreSwap(k1,k2)
         
         return (k1,k2,tscore)
 
-    def swap(self, n1, n2):
-        self.score = self.potentialSwap(n1, n2)
-        node1 = self.nodes.get(n1)
-        node2 = self.nodes.get(n2)
-        n1p = node1.getPrev()
-        n1n = node1.getNext()
-        n2p = node2.getPrev()
-        n2n = node2.getNext()
-        # handle swaps between adjacent nodes
-        if n1p == node2 and n2n == node1:
-            n2p = node2.getPrev()
-            n2n = node2
-            n1p = node1
-            n1n = node1.getNext()
-        elif n1n == node2 and n2p == node1:
-            n2p = node2
-            n2n = node2.getNext()
-            n1p = node1.getPrev()
-            n1n = node1
-        self.setPrev(node1, n2p)
-        self.setNext(node1, n2n)
-        self.setPrev(node2, n1p)
-        self.setNext(node2, n1n)
-
-    def randGreedySwap(self):
-        k1, k2 = random.sample(self.names, 2)
-        self.greedySwap(k1, k2)
-
-    def greedySwap(self, k1, k2):
-        tscore = self.potentialSwap(k1,k2)
-        if tscore < self.score:
-            self.swap(k1, k2)
-            return True
-        return False
-
     ### 2-Opt ###
-    def twoOptScore(self, v1, v2, v3, v4):
+    def scoreTwoOpt(self, e1, e2):
+        v1, v2 = self.tour[e1], self.tour[e1+1]
+        v3, v4 = self.tour[e2], self.tour[e2+1]
         old = self.getCost(v1, v2) + self.getCost(v3, v4)
         new = self.getCost(v3, v1) + self.getCost(v4, v2)
-        ptr = self.get(v4)
-        # Reverse one of the sub-tours
-        while ptr.prev.name != v1:
-            if ptr.name != v1:
-                old += self.getCost(ptr.name, ptr.next.name)
-            if ptr.name != v4:
-                new += self.getCost(ptr.name, ptr.prev.name)
-            ptr = ptr.next
-        return (self.score - old) + new
 
-    def twoOptMove(self, v1, v2, v3, v4):
-        if v1 in (v3, v4) or v2 in (v3, v4):
+        seg = self.tour[e2+1:e1+1] # from v4 to v1
+        old += self.calcPartialScore(seg)
+        new += self.calcPartialScore(seg[::-1])
+        return self.score - old + new
+
+    def twoOptMove(self, e1, e2):
+        if abs(e2 - e1) <= 1:
             return
-        ptr = self.get(v4)
-        # Reverse one of the sub-tours
-        while ptr.prev.name != v1:
-            tmp = ptr.next
-            ptr.next = ptr.prev
-            ptr.prev = tmp
-            ptr = tmp
-        # Stitch everything back together
-        self.setNext(self.get(v3), self.get(v1))
-        self.setNext(self.get(v4), self.get(v2))
+        self.score = self.scoreTwoOpt(e1, e2)
+        v1, v2 = self.tour[e1], self.tour[e1+1]
+        v3, v4 = self.tour[e2], self.tour[e2+1]
+        self.tour[e2+1:e1+1] = self.tour[e2+1:e1+1][::-1]
 
     def randTwoOptMove(self):
-        k1, k2 = random.sample(self.names, 2)
-        case = random.randint(0,1)
-        #print self.getPrev(k1), k1, self.getNext(k1), self.getPrev(k2), k2, self.getNext(k2)
-        if case == 0:
-            return self.greedyTwoOptMove(k1, self.getNext(k1), k2, self.getNext(k2))
-        elif case == 1:
-            return self.greedyTwoOptMove(self.getPrev(k1), k1, self.getPrev(k2), k2)
+        e1, e2 = random.sample(range(len(self.tour)), 2)
+        return self.greedyTwoOptMove(e1, e2)
 
-    def greedyTwoOptMove(self, v1, v2, v3, v4):
-        tscore = self.twoOptScore(v1,v2,v3,v4)
+    def greedyTwoOptMove(self, e1, e2):
+        tscore = self.scoreTwoOpt(e1,e2)
         if tscore < self.score:
-            self.twoOptMove(v1,v2,v3,v4)
-            self.score = tscore
+            self.twoOptMove(e1,e2)
             return True
         return False
         
@@ -205,44 +140,19 @@ class Tour(object):
 
         return False
 
-    ### Util ###
-    def getPrev(self, v):
-        return self.nodes.get(v).getPrev().name
-
-    def getNext(self, v):
-        return self.nodes.get(v).getNext().name
-
-    def setPrev(self, node, prev):
-        self.setNext(prev, node)
-
-    def setNext(self, node, next):
-        node.next = next
-        next.prev = node
-        dnx = self.getCost(node.name, next.name)
-
-    def get(self, v1):
-        return self.nodes.get(v1)
-
     def getCost(self, v1, v2):
         return self.distances.getCost(v1, v2)
 
     def printTour(self, start=0):
-        np = self.nodes.get(start)
-        prev = np.prev
-        c = len(self.nodes)
-        print np.name,
-        while np.next.name != start and c:
-            prev, np = np, np.traverse(prev)
-            c -= 1
-            print np.name,
-        print
+        print " ".join(map(str, self.tour))
 
-    def getScore(self):
-        np = self.nodes.values()[0]
-        first_node_name = np.name
-        prev = np.prev
+    def calcPartialScore(self, tour):
         score = 0
-        while np.next.name != first_node_name:
-            score += self.getCost(np.name, np.next.name)
-            prev, np = np, np.traverse(prev)
-        return score + self.getCost(np.name, np.next.name)
+        for i in range(len(tour)-1):
+            score += self.getCost(tour[i], tour[i+1])
+        return score
+
+    def calcScore(self):
+        score = self.calcPartialScore(self.tour)
+        score += self.getCost(self.tour[-1], self.tour[0])
+        return score
