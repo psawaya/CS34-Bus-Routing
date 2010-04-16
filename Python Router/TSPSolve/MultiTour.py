@@ -28,7 +28,7 @@ class MultiTour:
         for tour in self.tours:
             tourCoordinates = []
 
-            for node in tour.tourToIndices():
+            for node in tour.tour:#tour.tourToIndices():
                 coordinates = coordinatesRegex.match(self.coordinates[node]).groups()
                 tourCoordinates.append([node, [float(coordinates[0]),float(coordinates[1])]])
             
@@ -52,9 +52,7 @@ class MultiTour:
     
     def buildTours(self,mapinfo):
         for route in self.routes:
-            print "%s %s" % (route,len(self.routes))
-
-            newTour = Tour(mapinfo, names=route, start_route=route)
+            newTour = Tour(mapinfo, names=route, default_tour=route)
             self.tours.append(newTour)
 
         print self.tours
