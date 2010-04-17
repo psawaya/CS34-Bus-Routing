@@ -29,24 +29,28 @@ class TourNode(object):
         self.heads = heads
 
 class Tour(object):
-    def __init__(self, distances, names=None, use_best=False):
+    def __init__(self, distances, names=None, default_tour = None, use_best=False):
         self.names = names or range(len(distances))
         self.nodes = map(TourNode, self.names)
         self.distances = distances
         self.score = sys.maxint
         self.heat = 1.0
-        if use_best and self.distances.best_known is not None:
-            self.tour = Cycle(self.distances.best_known[:])
+        if default_tour is not None:
+            self.tour = Cycle(default_tour)
         else:
-            self.tour = Cycle(self.names[:])
-            random.shuffle(self.tour)
+            if use_best and self.distances.best_known is not None:
+                self.tour = Cycle(self.distances.best_known[:])
+            else:
+                self.tour = Cycle(self.names[:])
+                random.shuffle(self.tour)
         self.score = self.calcScore()
 
     ### Node Swapping ###
-    def scoreSwap(self, n1, n2):
+    def scoreSwap(self, n1, n2):        
         if abs(n2 - n1) <= 1 or abs(n2 - n1) == len(self.tour) - 1:
             old  = self.calcPartialScore(self.tour[n1-1:n2+2])
             new  = self.calcPartialScore([self.tour[n1-1], self.tour[n2], self.tour[n1], self.tour[n2+1]])
+
         else:
             old  = self.calcPartialScore(self.tour[n1-1:n1+2])
             old += self.calcPartialScore(self.tour[n2-1:n2+2])
@@ -77,7 +81,6 @@ class Tour(object):
             self.swap(n1,n2)
             return True
         else:
-            # print "a: %s b: %s " % (random.random(),self.heat)
             if random.random() < self.heat:
                 self.swap(n1,n2)                
                 return True
@@ -120,6 +123,18 @@ class Tour(object):
         if tscore < self.score:
             self.twoOptMove(e1,e2)
             return True
+        return False
+        
+    def annealTwoOpt(self):
+        n1,n2,_ = self.randomPair()
+
+        tscore = self.scoreTwoOpt(n1,n2)
+        
+        if tscore < self.score or random.random() < self.heat:
+            self.twoOptMove(n1,n2)
+            self.score = tscore #twoOptMove doesn't update score
+            return True
+
         return False
 
     # k-opt
@@ -191,4 +206,3 @@ class Tour(object):
         score = self.calcPartialScore(tour1)
         score += self.getCost(tour1[-1], tour1[0])
         return score
-

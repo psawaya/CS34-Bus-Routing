@@ -1,3 +1,5 @@
+{ "home":  "Crocker Farm Elementary School", 
+"stops" :
 [
 
 [/*"1159 South East Street",*/ "1350 South East Street", "1641 South East Street", "817 Bay Road", "1045 Bay Road", "1185 Bay Road", "19 Elf Hill Road", " Arrow head Lane and Stagecoach", "40 Hulst Road", " Hulst Road and Arrow head Lane", "67 Hulst Road", "34 Elf Hill Road", "1136 Bay Road", "1070 Bay Road", "746 Bay Road", "190 Middle Street", "Crocker Farm Elementary School"], 
@@ -12,4 +14,4 @@
 
 ["Village Park", "105 Village Park", "170 Village Park", "2 Shays Street", "49 Shays Street", "159 Shays Street", "266 Shays Street", "324 Pomeroy Drive", "3 Carriage Road", "37 Carriage Road", "34 Pomeroy Lane", "54 Longmeadow Drive", "132 Farmington Road", " Brookside Court and Pondview Drive", " Western Lane and Pondview Drive", " Atwater Circle and Pondview Drive", /*"114 Pondview Driveve",*/ "114 Pondview Drive", "82 Pondview Drive", " Lantern Lane and  Pondview Drive", "35 Farmington Road", "142 Tracy Circle", "120 Tracy Circle", "112 Tracy Circle", "Crocker Farm Elementary School"]
 
-]
+]   }
