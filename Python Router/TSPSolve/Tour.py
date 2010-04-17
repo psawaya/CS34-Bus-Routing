@@ -12,8 +12,6 @@ class Cycle(list):
         if i < j:
             return list.__getslice__(self, i, j)
         else:
-            #if i == len(self) and j == 0:
-            #    return [self[-1]]
             return list.__getslice__(self, i, len(self)) + list.__getslice__(self, 0, j)
     def __setslice__(self, i, j, v):
         i = i % len(self)
@@ -89,7 +87,7 @@ class Tour(object):
         return False
 
     def randGreedySwap(self):
-        k1, k2 = random.sample(self.names, 2)
+        k1, k2 = random.sample(range(len(self.tour)), 2)
         self.greedySwap(k1, k2)
 
     def annealSwap(self):
@@ -106,7 +104,7 @@ class Tour(object):
             return False
 
     def randomPair(self):
-        k1, k2 = random.sample(self.names, 2)
+        k1, k2 = random.sample(range(len(self.tour)), 2)
         tscore = self.scoreSwap(k1,k2)
         
         return (k1,k2,tscore)
@@ -129,6 +127,7 @@ class Tour(object):
         self.score = self.scoreTwoOpt(e1, e2)
         v1, v2 = self.tour[e1], self.tour[e1+1]
         v3, v4 = self.tour[e2], self.tour[e2+1]
+        # Reverse a portion of the tour
         self.tour[e2+1:e1+1] = self.tour[e2+1:e1+1][::-1]
 
     def randTwoOptMove(self):
@@ -154,6 +153,58 @@ class Tour(object):
 
         return False
 
+    # k-opt
+    def kOptMove(self, *vs):
+        vs = list(vs)
+        vs.sort()
+        slices = zip(vs[:-1], vs[1:]) + [(vs[-1],vs[0])]
+        slices = map(lambda x: (x[0]+1,x[1]+1), slices)
+        segs = [self.tour[i:j] for i,j in slices]
+        scores = map(self.calcPartialScore, segs)
+        for i in range(len(segs)):
+            sr = segs[i][::-1]
+            r = self.calcPartialScore(sr)
+            if r < scores[i]:
+                segs[i] = sr
+                scores[i] = r
+        weights = []
+        for r in segs:
+            t = []
+            for c in segs:
+                t.append(self.getCost(r[-1], c[0]))
+            weights.append(t)
+        segscore = sum(scores)
+        score, order = self.minKTour(range(len(vs)), weights, 1)
+        tour = segs[order[0]]
+        for i in range(1, len(order)):
+            tour.extend(segs[order[i]])
+        return score + segscore, Cycle(tour)
+
+    def minKTour(self, tour, weights, indx):
+        best = sum(weights[tour[i]][tour[i+1]] for i in range(len(tour)-1))
+        best += weights[tour[-1]][tour[0]]
+        besttour = tour
+        for i in range(indx, len(tour)):
+            tour[indx], tour[i] = tour[i], tour[indx]
+            score, tt = self.minKTour(tour, weights, indx+1)
+            if score < best:
+                best = score
+                besttour = tt
+            tour[indx], tour[i] = tour[i], tour[indx]
+        return (best, besttour)
+
+    def randKOptMove(self, k=3):
+        vs = random.sample(range(random.randint(0,1),len(self.tour),2), k)
+        return self.greedyKOptMove(*vs)
+
+    def greedyKOptMove(self, *vs):
+        score, tour = self.kOptMove(*vs)
+        if score <= self.score:
+            self.score = score
+            self.tour = tour
+            return True
+        return False
+
     def getCost(self, v1, v2):
         return self.distances.getCost(v1, v2)
 
@@ -166,7 +217,8 @@ class Tour(object):
             score += self.getCost(tour[i], tour[i+1])
         return score
 
-    def calcScore(self):
-        score = self.calcPartialScore(self.tour)
-        score += self.getCost(self.tour[-1], self.tour[0])
+    def calcScore(self, tour=None):
+        tour1 = tour or self.tour
+        score = self.calcPartialScore(tour1)
+        score += self.getCost(tour1[-1], tour1[0])
         return score
