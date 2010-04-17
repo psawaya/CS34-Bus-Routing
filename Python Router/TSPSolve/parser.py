@@ -88,6 +88,9 @@ class MapInfo:
                                    "size of distance matrix")
     def getCost(self, n1, n2):
         return self.matrix[n1][n2]
+        
+    def getRowFrom(self,n):
+        return self.matrix[n]
 
     def pathToAddresses(self, path):
         if self.addresses:

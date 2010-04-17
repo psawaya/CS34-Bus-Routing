@@ -1,6 +1,8 @@
 from parser import Parser
 from Tour import Tour
 
+import random
+
 import json #not using python's built-in json to preserve compatibility with python 2.5
 
 import re
@@ -16,6 +18,8 @@ class MultiTour:
         self.routes_json = None
         
         self.tourBase = ["",None]
+        
+        self.mapinfo = None
 
     def calculateScore(self):
         return sum([tour.score for tour in self.tours])
@@ -37,9 +41,89 @@ class MultiTour:
         f = open(filename,'w')
         
         f.write(json.write({'base' : {'name': self.tourBase[0], 'coords' : self.parseCoordinates(self.coordinates[self.tourBase[1]])},
-                'routes' : tourRoutes}))
+                'routes' : tourRoutes, 'routeLength' : self.calculateScore()}))
         
         f.close()
+    
+    def dumpToDOTFile(self,filename):
+        f = open(filename,'w')
+        
+        f.write("graph G {\n")
+        
+        for node in self.addresses.iterkeys():
+            coordinates = self.parseCoordinates(self.coordinates[self.addresses[node]])
+            f.write("n%s [ pos = \"%s,%s!\"];\n" % (self.addresses[node],abs(float(coordinates[0])-int(coordinates[0]))*200,abs(float(coordinates[1])-int(coordinates[1]))*200))
+        
+        for tour in self.tours:
+            for node in self.getRoutePairs(tour):                
+                f.write("n%s -- n%s;\n" % node)
+        
+        f.write("\n}")
+        f.close()
+        
+    def dumpDiffsToDOTFile(self,filename,diffs):
+        f = open(filename,'w')
+        
+        f.write("graph G {\n")
+        
+        for node in self.addresses.iterkeys():
+            coordinates = self.parseCoordinates(self.coordinates[self.addresses[node]])
+            f.write("n%s [label=\"\",size=\"1\"];\n" % (self.addresses[node]))
+            #,abs(int(coordinates[1]*10) - float(coordinates[1]*10))*300,abs(int(coordinates[0]*10) - float(coordinates[0]*10))*300)
+            # f.write("n%s [ pos = \"%s,%s!\"];\n" % (self.addresses[node],abs(float(coordinates[0])-int(coordinates[0]))*200,abs(float(coordinates[1])-int(coordinates[1]))*200))
+            
+        
+        for tourIdx in range(len(self.tours)):
+            routePairs = self.getRoutePairs(self.tours[tourIdx])
+            edgeList = []
+            
+            for pair in routePairs:
+                edgeList.append((pair[0],pair[1]))
+                edgeList.append((pair[1],pair[0]))
+                
+            print edgeList
+            
+            for nodeIdx in range(len(routePairs)):
+                if diffs[tourIdx][nodeIdx] not in edgeList:
+                    f.write("n%s -- n%s [color=\"#ff0000\"];\n" % routePairs[nodeIdx])
+                    f.write("n%s -- n%s [color=\"#00ff00\"];\n" % diffs[tourIdx][nodeIdx])
+                else:
+                    f.write("n%s -- n%s [label=\"%s m\"];\n" % (routePairs[nodeIdx][0],routePairs[nodeIdx][1],self.mapinfo.getCost(*routePairs[nodeIdx])))
+        f.write("\n}")
+        f.close()
+    
+    def swapBetweenRoutes(self,probabilityOfWorsening=0):
+        pass
+        # routeIdxFrom = random.sample(range(len(self.tours)),1)[0]
+        # routeIdxTo = random.sample(range(len(self.tours)),1)[0]
+        # 
+        # #Just try again if they're the same
+        # if routeIdxFrom == routeIdxTo: return self.swapBetweenRoutes(probabilityOfWorsening)
+        # 
+        # randomNodeIdx = random.randint(0,len(self.tours[routeIdxFrom])-1)
+        # randomNode = self.tours[routeIdxFrom][randomNodeIdx]
+        # 
+        # closestInNewRoute = self.tours[routeIdxTo].returnClosestToNode(randomNode)
+        # closest = self.mapinfo.getRowFrom(randomNode)
+        # closest.sort()
+        # 
+        # if closestInNewRoute[1] in closest[0:3] or random.random() < probabilityOfWorsening:
+        #     #Do swap
+        #     # self.tours[routeIdxFrom]
+        #     print "would do swap"
+        #     del self.tours[routeIdxFrom].tour[randomNodeIdx]
+        #     insertIdx = closestInNewRoute[0]
+        #     #TODO:  Generate all permutations of area around insertIdx
+        #     
+        
+        # print "mapinfo: %s" % closest
+        # print "compare: %s " %          self.tours[routeIdxTo].returnClosestToNode(randomNode)
+        # self.tours[routeIdxTo].GENI(randomNode)
+        
+        
+
+    def getRoutePairs(self,tour):
+        return [(tour.tour[x],tour.tour[x+1]) for x in range(len(tour.tour)-1)]
 
     def readRoutes(self,filename):
         f = open(filename)
@@ -50,12 +134,13 @@ class MultiTour:
         
         self.routes_json = json.read(routesTxt)
     
-    def buildTours(self,mapinfo):
+    def buildTours(self,mapinfo):        
         for route in self.routes:
             newTour = Tour(mapinfo, names=route, default_tour=route)
             self.tours.append(newTour)
 
         print self.tours
+        self.mapinfo = mapinfo
 
     #HACKFEST 2k10
     def correlateWithAddresses(self,addressesFilename):
@@ -83,6 +168,17 @@ class MultiTour:
         self.tourBase = [self.routes_json['home'],self.addresses[self.standardizeAddress(self.routes_json['home'])]]
 
         # print self.coordinates
+
+    #Thanks, http://snippets.dzone.com/posts/show/753
+    @staticmethod
+    def all_perms(str):
+        if len(str) <=1:
+            yield str
+        else:
+            for perm in all_perms(str[1:]):
+                for i in range(len(perm)+1):
+                    yield perm[:i] + str[0:1] + perm[i:]    
+
     @staticmethod
     def parseCoordinates(coordinatesStr):
         coordinatesRegex = re.compile("\(([0-9\-\.]{1,})\,([0-9\-\.]{1,})\)")
@@ -112,19 +208,27 @@ if __name__ == "__main__":
     multiTour.buildTours(mapinfo)
 
     multiTour.dumpToFile("before.json")
+    multiTour.dumpToDOTFile("before.dot")
+    
+    beforeRoutes = [multiTour.getRoutePairs(tour) for tour in multiTour.tours]
 
     print "initial overall score: %i" % multiTour.calculateScore()
-
+    # multiTour.swapBetweenRoutes()
+    
+    
     for tour in multiTour.tours:
         heat = 0
         # while (heat > 0):
         for x in range(10000):
             tour.heat = 0
             tour.annealTwoOpt()
-
+    
             # heat -= 0.01
             # print heat
-
+    
     print "final overall score: %i" % multiTour.calculateScore()
-
+    
     multiTour.dumpToFile("after.json")
+    multiTour.dumpToDOTFile("after.dot")
+    
+    multiTour.dumpDiffsToDOTFile("diffs.dot",beforeRoutes)

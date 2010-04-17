@@ -46,6 +46,22 @@ class Tour(object):
                 self.tour = Cycle(self.names[:])
                 random.shuffle(self.tour)
         self.score = self.calcScore()
+        
+    def scoreSubsection(self,subsection):
+        edges = [(subsection[x],subsection[x+1]) for x in range(len(subsection)-1)]
+        
+        return sum([self.getCost(*edge) for edge in edges])
+    
+    def returnClosestToNode(self,candidateNode):
+        closest = None
+        for node in self.tour:
+            nodeCost = node.getCost(node,candidateNode)
+            if closest == None or nodeCost < closest[1]:
+                closest = (node,nodeCost)
+        return closest
+    
+    def GENI(self,candidateNode):
+        pass
 
     ### Node Swapping ###
     def scoreSwap(self, n1, n2):        

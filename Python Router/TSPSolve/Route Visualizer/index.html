@@ -23,15 +23,16 @@
         
         $('#clearButton').click(clearTour);
         $('#drawButton').click(function () {
+
             var routeNum = parseInt($('#routeSelect').val());
             
             switch($("input[@name='beforeOrAfter']:checked").val()) {
                 case 'b':
-                    drawTour(beforeData['routes'][routeNum]);
+                    drawTour(beforeData['routes'][routeNum],randomColor());
                     break;
                     
                 case 'a':
-                    drawTour(afterData['routes'][routeNum]);
+                    drawTour(afterData['routes'][routeNum]),randomColor();
                     break;    
                     
                 case 'd':
@@ -39,6 +40,15 @@
                     break;
             }
 
+        });
+        
+        $('#drawAllButton').click(function () {
+            for (var x = 0; x < beforeData['routes'].length; x++){
+                if ($("input[@name='beforeOrAfter']:checked").val() == "b")
+                    drawTour(beforeData['routes'][x],"rgb(0,255,0)");
+                else
+                    drawTour(afterData['routes'][x],"rgb(0,0,255)");
+            }
         });
         
         fetchJSON();
@@ -89,6 +99,10 @@ function populateAndShowSelectTour() {
     });
     
     attachMessageToMarker(beforeData['base']['name'],baseMarker);
+
+    console.log(afterData['routeLength']);
+
+    $('#fitnessChange').html("Improved route by " + parseInt(parseInt(beforeData['routeLength']) - parseInt(afterData['routeLength'])) + "m");
 
     $('#tourSelectDiv').show();
 }
@@ -149,12 +163,12 @@ function drawDifferences(routeNum) {
     // marker.setTitle("#");
 }
 
-function drawTour(tour) {        
+function drawTour(tour,color) {        
        pathCoordinates = new google.maps.MVCArray();
 
         var polyOptions = {
           path: pathCoordinates,
-          strokeColor: randomColor(),
+          strokeColor: color,
           strokeOpacity: 1.0,
           strokeWeight: 3
         }
@@ -206,9 +220,11 @@ function attachMessageToMarker(msg,marker) {
         <input type="radio" name="beforeOrAfter" value="a"> After
         <input type="radio" name="beforeOrAfter" value="d"> Differences
           
-          <input type="submit" value="draw" id="drawButton">
+        <input type="submit" value="draw" id="drawButton">
+        <input type="submit" value="draw all" id="drawAllButton">
           
-          <span style="background-color:#00ff00;width:5px"> </span>
+          <!-- <span style="background-color:#00ff00;width:5px"> </span> -->
+          <span id="fitnessChange"></span>
       </div>
   </div>
 </body>
