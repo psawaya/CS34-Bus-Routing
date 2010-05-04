@@ -97,17 +97,55 @@ class MapInfo:
             for i in path:
                 print addresses[i]
 
+    def graphvizify(self, tour, output):
+        import pygraphviz as pgv
+        G = pgv.AGraph()
+        G.graph_attr.update(minlen=".1")
+        coords = open("crocker.txt").readlines()
+        coords = [i.strip().strip("()") for i in coords]
+        coords = [i.split(",") for i in coords]
+        coords = [(float(i[0]), float(i[1])) for i in coords]
+        coords = [(i[0]-42.3, abs(i[1]+72.4)) for i in coords]
+        coords = [(i[0]*100, i[1]*100) for i in coords]
+        G.graph_attr.update(ratio="fill")
+
+        G.node_attr.update(shape="circle")
+        G.node_attr.update(fixedsize="True")
+        G.node_attr.update(label="hax")
+        G.node_attr.update(width="0.2")
+        G.node_attr.update(height="0.2")
+        G.node_attr.update(color="blue")
+
+        #G.add_nodes_from(range(len(self.matrix)), label="")
+        for x in range(len(self.matrix)):
+            G.add_node(str(x), label="", pos=str(coords[x][0])+","+str(coords[x][1])+"!")
+
+        #edgeWeights = []
+        #for i in range(len(tour)-1):
+        #    edgeWeights.append(self.getCost(tour[i],tour[i+1]))
+        #edgeMax = max(edgeWeights)
+
+        for i in range(len(tour)-1):
+            G.add_edge(str(tour[i]),str(tour[i+1]))
+        G.add_edge(str(tour[-1]),str(tour[0]))
+        
+        G.layout("neato")
+        G.write("fuckthis.dot")
+        G.draw(output)
+
+
     def __len__(self):
         return len(self.matrix)
 
 if __name__ == "__main__":
-    random.seed(1337)
+    #random.seed(1337)
 
     mapinfo = Parser().parse(sys.argv[1])
     tour = Tour(mapinfo, use_best=True)
 
     print "Starting tour:"
     tour.printTour()
+    #mapinfo.graphvizify(tour.tour, "start.png")
 
     print
     print tour.score
@@ -145,5 +183,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         pass
     print
-    print "score =", tour.score
+    print " score =", tour.score
     print " tour =", tour.printTour()
+    mapinfo.graphvizify(tour.tour, "end.png")

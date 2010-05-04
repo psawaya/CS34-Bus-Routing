@@ -174,7 +174,11 @@ class Tour(object):
                 t.append(self.getCost(r[-1], c[0]))
             weights.append(t)
         segscore = sum(scores)
-        score, order = self.minKTour(range(len(vs)), weights, 1)
+        order = range(len(vs))
+        random.shuffle(order)
+        score = sum(weights[order[i]][order[i+1]] for i in range(len(order)-1))
+        score += weights[order[-1]][order[0]]
+        #score, order = self.minKTour(range(len(vs)), weights, 1)
         tour = segs[order[0]]
         for i in range(1, len(order)):
             tour.extend(segs[order[i]])
@@ -193,12 +197,14 @@ class Tour(object):
             tour[indx], tour[i] = tour[i], tour[indx]
         return (best, besttour)
 
-    def annealKOpt(self):
-        vs = random.sample(range(random.randint(0,1),len(self.tour),2), 3)
+    def annealKOpt(self, k):
+        vs = random.sample(range(len(self.tour)), k)
+        #vs = range(len(self.tour))
         _, tour = self.kOptMove(*vs)
         tscore = self.calcScore(tour)
         
         if tscore < self.score or random.random() < self.heat:
+            print tscore
             self.score = tscore
             self.tour = tour
             return True

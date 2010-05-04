@@ -26,7 +26,7 @@ class MultiTour:
     
     # Writes tour data to JSON file, suitable for Google Maps integration
     def dumpToFile(self,filename):        
-        coordinatesRegex = re.compile("\(([0-9\-\.]{1,})\,([0-9\-\.]{1,})\)")
+        coordinatesRegex = re.compile("\(([0-9\-\.]{1,})\,\s*?([0-9\-\.]{1,})\)")
         
         tourRoutes = []
         for tour in self.tours:
@@ -134,13 +134,18 @@ class MultiTour:
         
         self.routes_json = json.read(routesTxt)
     
-    def buildTours(self,mapinfo):        
-        for route in self.routes:
-            newTour = Tour(mapinfo, names=route, default_tour=route)
-            self.tours.append(newTour)
+    def buildTours(self,mapinfo):
+        alltour = set()
+        map(alltour.update, self.routes)
+        self.tours = [Tour(mapinfo, names=list(alltour), default_tour=list(alltour))]
+        self.allstops = self.tours[0]
 
-        print self.tours
         self.mapinfo = mapinfo
+        #for route in self.routes:
+        #    newTour = Tour(mapinfo, names=route, default_tour=route)
+        #    self.tours.append(newTour)
+
+        #print self.tours
 
     #HACKFEST 2k10
     def correlateWithAddresses(self,addressesFilename):
@@ -174,7 +179,14 @@ class MultiTour:
 
         # print self.coordinates
 
-    #Thanks, http://snippets.dzone.com/posts/show/753
+    def partition(self):
+        tagd = []
+        for i in range(len(self.allstops.tour)-1):
+            v1, v2 = self.allstops.tour[i:i+2]
+            tagd.append((v1, self.allstops.getCost(v1, v2)))
+        tagd.sort(reverse=True)
+        exp = tagd[:len(self.routes)]
+
     @staticmethod
     def all_perms(str):
         if len(str) <=1:
@@ -186,7 +198,7 @@ class MultiTour:
 
     @staticmethod
     def parseCoordinates(coordinatesStr):
-        coordinatesRegex = re.compile("\(([0-9\-\.]{1,})\,([0-9\-\.]{1,})\)")
+        coordinatesRegex = re.compile("\(([0-9\-\.]{1,})\,\s*?([0-9\-\.]{1,})\)")
         
         coordinates = coordinatesRegex.match(coordinatesStr).groups()
         return [float(coordinates[0]),float(coordinates[1])]
@@ -228,19 +240,25 @@ if __name__ == "__main__":
     print "initial overall score: %i" % multiTour.calculateScore()
     # multiTour.swapBetweenRoutes()
     
-    
-    for tour in multiTour.tours:
-        heat = 0
-        # while (heat > 0):
-        for x in range(10000):
-            tour.heat = 0
-            tour.annealTwoOpt()
-    
-            # heat -= 0.01
-            # print heat
+    try:
+       print "initial overall score: %i" % multiTour.calculateScore()
+
+       #for tour in multiTour.tours:
+       for tour in multiTour.tours:
+           heat = 1.0
+           count = 200000
+           dec = heat/10000
+           # while (heat > 0):
+           for x in range(count):
+               tour.heat = heat
+               tour.annealKOpt(5)
+               if heat > 0:
+                   heat -= dec
+    except KeyboardInterrupt:
+        pass
     
     print "final overall score: %i" % multiTour.calculateScore()
-    
+    print multiTour.tours
     multiTour.dumpToFile("after.json")
     multiTour.dumpToDOTFile("after.dot")
     
