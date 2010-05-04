@@ -109,11 +109,11 @@ class MultiTour:
         # 
         # if closestInNewRoute[1] in closest[0:3] or random.random() < probabilityOfWorsening:
         #     #Do swap
-        #     # self.tours[routeIdxFrom]
+        # 
         #     print "would do swap"
         #     del self.tours[routeIdxFrom].tour[randomNodeIdx]
         #     insertIdx = closestInNewRoute[0]
-        #     #TODO:  Generate all permutations of area around insertIdx
+            #TODO:  Generate all permutations of area around insertIdx
         #     
         
         # print "mapinfo: %s" % closest
@@ -159,11 +159,16 @@ class MultiTour:
             self.addresses[line[0:justAddressIdx].strip()] = lineIdx
 
             self.coordinates.append(line[justAddressIdx:].strip()) #save coordinates for file dump
+        print self.addresses
 
         for routeIdx in range(len(self.routes_json['stops'])):
             self.routes.append([])
             for address in self.routes_json['stops'][routeIdx]:
-                self.routes[routeIdx].append (self.addresses[self.standardizeAddress(address).strip()])
+                try:
+                    self.routes[routeIdx].append (self.addresses[self.standardizeAddress(address).strip()])
+                except KeyError:
+                    #try no replacement.
+                    self.routes[routeIdx].append (self.addresses[self.standardizeAddress(address,False).strip()])
                 
         self.tourBase = [self.routes_json['home'],self.addresses[self.standardizeAddress(self.routes_json['home'])]]
 
@@ -187,8 +192,16 @@ class MultiTour:
         return [float(coordinates[0]),float(coordinates[1])]
 
     @staticmethod
-    def standardizeAddress(txt):
-        newTxt = txt.lower().replace("lane","ln").strip() + " amherst, ma 01002"
+    def standardizeAddress(txt,replace=True):
+        print "txt = %s" % txt
+        if (type(txt) == 'list'): txt=txt[0]
+        newTxt = txt.lower().strip()
+        
+        if replace:
+            newTxt = newTxt.replace("lane","ln")
+        
+        if newTxt.find(" pelham, ma 01002") == -1:
+            newTxt += " amherst, ma 01002"
 
         if newTxt.find(" and ") != -1: # "road" is "rd", but only in the names of intersections. ugh.
             newTxt = newTxt.replace("road","rd").replace("drive","dr")
@@ -198,12 +211,12 @@ class MultiTour:
 if __name__ == "__main__":
     multiTour = MultiTour()
 
-    multiTour.readRoutes('routesData/crockerStops.json')
+    multiTour.readRoutes('routesData/hsStops.json')#('routesData/crockerStops.json')
 
-    multiTour.correlateWithAddresses("../../routes/by_school/crocker.txt")
+    multiTour.correlateWithAddresses("../../routes/by_school/high-juniorhigh.txt")
 
     parser = Parser()
-    mapinfo = parser.parse("routesData/crockerMatrix.txt")
+    mapinfo = parser.parse("routesData/hsMatrix.txt")
 
     multiTour.buildTours(mapinfo)
 
