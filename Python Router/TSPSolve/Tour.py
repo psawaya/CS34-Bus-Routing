@@ -183,8 +183,8 @@ class Tour(object):
     def minKTour(self, tour, weights, indx):
         best = sum(weights[tour[i]][tour[i+1]] for i in range(len(tour)-1))
         best += weights[tour[-1]][tour[0]]
-        besttour = tour
-        for i in range(indx, len(tour)):
+        besttour = tour[:]
+        for i in range(indx+1, len(tour)):
             tour[indx], tour[i] = tour[i], tour[indx]
             score, tt = self.minKTour(tour, weights, indx+1)
             if score < best:
@@ -193,13 +193,25 @@ class Tour(object):
             tour[indx], tour[i] = tour[i], tour[indx]
         return (best, besttour)
 
-    def randKOptMove(self, k=3):
+    def annealKOpt(self):
+        vs = random.sample(range(random.randint(0,1),len(self.tour),2), 3)
+        _, tour = self.kOptMove(*vs)
+        tscore = self.calcScore(tour)
+        
+        if tscore < self.score or random.random() < self.heat:
+            self.score = tscore
+            self.tour = tour
+            return True
+
+        return False
+
+    def randKOptMove(self, k=5):
         vs = random.sample(range(random.randint(0,1),len(self.tour),2), k)
         return self.greedyKOptMove(*vs)
 
     def greedyKOptMove(self, *vs):
         score, tour = self.kOptMove(*vs)
-        if score <= self.score:
+        if score < self.score:
             self.score = score
             self.tour = tour
             return True
@@ -222,3 +234,6 @@ class Tour(object):
         score = self.calcPartialScore(tour1)
         score += self.getCost(tour1[-1], tour1[0])
         return score
+
+    def __repr__(self):
+        return str(self.tour)
