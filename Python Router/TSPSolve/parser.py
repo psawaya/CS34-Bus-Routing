@@ -120,7 +120,7 @@ if __name__ == "__main__":
         while True:
             prevScore = tour.score
 
-            if tour.randTwoOptMove():
+            if tour.annealKOpt(): #tour.annealSwap():
                 print "score = %i, heat = %f, all time best = %i" % (tour.score,tour.heat,lscore)
 
                 iterationsOfNoChange = 0
