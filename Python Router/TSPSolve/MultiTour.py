@@ -213,7 +213,9 @@ class MultiTour:
         return newTxt
 
 def printUsage():
-    print "Usage: python %s [--k k-opt degree] [--routes file] [--addresses file] inputfile" % sys.argv[0]
+    print """Usage: python %s [--k=k-opt degree] [--heat=initial heat]
+                             [--count=number of iterations]
+                             [--routes=file] [--addresses=file] inputfile""" % sys.argv[0]
 
 if __name__ == "__main__":
     import getopt
@@ -221,7 +223,8 @@ if __name__ == "__main__":
         printUsage()
         sys.exit(1)
 
-    optlist, args = getopt.getopt(sys.argv[1:], '', ['routes', 'addresses', 'k='])
+    optlist, args = getopt.getopt(sys.argv[1:], '', ['routes=', 'addresses=',
+                                                    'k=', 'heat=', 'count='])
     print optlist, args
     if len(args) > 1:
         printUsage()
@@ -233,15 +236,22 @@ if __name__ == "__main__":
     multiTour = MultiTour(mapinfo)
 
     opts = dict(optlist)
-    if opts.has_key('addresses'):
+    if opts.has_key('--addresses'):
         multiTour.correlateWithAddresses(opts['addresses'])
-    if opts.has_key('routes'):
+    if opts.has_key('--routes'):
         multiTour.readRoutes(opts['routes'])
-    if opts.has_key('k'):
-        k = opts['k']
+    if opts.has_key('--k'):
+        k = int(opts['--k'])
     else:
         k = 3
-
+    if opts.has_key('--heat'):
+        heat0 = float(opts['--heat'])
+    else:
+        heat0 = 1.0
+    if opts.has_key('--count'):
+        count = int(opts['--count'])
+    else:
+       count = 200000
     multiTour.dumpToFile("before.json")
     multiTour.dumpToDOTFile("before.dot")
 
@@ -253,8 +263,7 @@ if __name__ == "__main__":
     try:
        #for tour in multiTour.tours:
        for tour in multiTour.tours:
-           heat = 1.0
-           count = 200000
+           heat = heat0
            dec = heat/10000
            # while (heat > 0):
            for x in range(count):
